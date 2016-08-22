@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#5ECCCC"
+    android:gravity="center"
+    tools:context="schaffer.myoho.Activity.ChooseActivity">
+
+    <schaffer.myoho.DefinedView.RbGroupView
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+
+        android:orientation="vertical">
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="boys"
+            android:background="@null"
+            android:src="@drawable/selector_choose_boys" />
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="girls"
+            android:background="@null"
+            android:src="@drawable/selector_choose_girls" />
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="kids"
+            android:background="@null"
+            android:src="@drawable/selector_choose_kids" />
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="lifeStyle"
+            android:background="@null"
+            android:src="@drawable/selector_choose_lifestyle" />
+    </schaffer.myoho.DefinedView.RbGroupView>
+</RelativeLayout>
