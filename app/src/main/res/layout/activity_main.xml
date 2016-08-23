@@ -1,16 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SlidingPaneLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_slide"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".Activity.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
-</RelativeLayout>
+    <LinearLayout
+        android:id="@+id/bottomView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ListView
+            android:id="@+id/main_bottom_lv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:entries="@array/bottom_list" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/topView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff">
+
+        <RadioGroup
+            android:id="@+id/main_top_rb_group"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/radioGroup_height"
+            android:layout_alignParentBottom="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/main_rb_homeome"
+                style="@style/main_rb_style"
+                android:checked="true"
+                android:drawableTop="@drawable/selector_main_rb_home"
+                android:onClick="bottomItemClick"
+                android:text="首页" />
+
+            <RadioButton
+                android:id="@+id/main_rb_category"
+                style="@style/main_rb_style"
+                android:drawableTop="@drawable/selector_main_rb_category"
+                android:onClick="bottomItemClick"
+                android:text="类别" />
+
+            <RadioButton
+                android:id="@+id/main_rb_roam"
+                style="@style/main_rb_style"
+                android:drawableTop="@drawable/selector_main_rb_roam"
+                android:onClick="bottomItemClick"
+                android:text="淘" />
+
+            <RadioButton
+                android:id="@+id/main_rb_cart"
+                style="@style/main_rb_style"
+                android:drawableTop="@drawable/selector_main_rb_cart"
+                android:onClick="bottomItemClick"
+                android:text="购物车" />
+
+            <RadioButton
+                android:id="@+id/main_rb_mine"
+                style="@style/main_rb_style"
+                android:drawableTop="@drawable/selector_main_rb_mine"
+                android:onClick="bottomItemClick"
+                android:text="我的" />
+
+        </RadioGroup>
+
+        <FrameLayout
+            android:id="@+id/main_top_group"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/main_top_rb_group" />
+
+    </RelativeLayout>
+
+
+</android.support.v4.widget.SlidingPaneLayout>

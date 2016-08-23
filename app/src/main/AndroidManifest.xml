@@ -20,12 +20,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.MainActivity" />
+        <activity
+            android:name=".Activity.MainActivity"
+            android:launchMode="singleTask" />
         <activity android:name=".Activity.GuideActivity" />
         <activity android:name=".Activity.WelcomeActivity" />
         <activity
             android:name=".Activity.ChooseActivity"
-            android:launchMode="singleTask"></activity>
+            android:launchMode="singleTask" />
+        <activity android:name=".Activity.CartActivity"></activity>
     </application>
 
 </manifest>

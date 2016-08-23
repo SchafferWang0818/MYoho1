@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/category_tb"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#323232"
+        android:gravity="center_vertical">
+
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="@null"
+            android:onClick="openSliding"
+            android:src="@drawable/selector_tb_menu_btn" />
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/category_tb_tab"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            app:tabIndicatorColor="#fff"
+            app:tabIndicatorHeight="2px"
+            app:tabMode="scrollable"
+            app:tabTextColor="#fff" />
+    </RelativeLayout>
+
+    <schaffer.myoho.DefinedView.CategoryViewPager
+        android:id="@+id/category_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/category_tb" />
+
+
+</RelativeLayout>

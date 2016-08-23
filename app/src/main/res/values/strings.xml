@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">MYoho</string>
+    <string-array name="bottom_list">
+        <item>男生</item>
+        <item>女生</item>
+        <item>潮童</item>
+        <item>创意生活</item>
+        <item>奥莱</item>
+        <item>潮流优选</item>
+        <item>明星原创</item>
+        <item>全球购</item>
+        <item>逛</item>
+    </string-array>
 </resources>
