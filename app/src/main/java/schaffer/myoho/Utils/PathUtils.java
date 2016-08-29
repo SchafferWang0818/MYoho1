@@ -27,48 +27,58 @@ public class PathUtils {
 //        所有品牌接口: allbrand.php
 //        参数: parames={\"page\":\"10\"}
     public static final String JSON_CATE_ALL_BRAND_HEAD = JSON_HEAD + "allbrand.php";
+    //        获取商品详情: goodsvalue.php
+    //        参数: parames={\"goods_id\":\""+id+"\"}
+    //        收藏商品接口: CollectionShop.php
+    //        参数:
+    //        添加购物车接口: addcart.php
+    //        参数: parames={\"goodsId\":\""+list.get(0)._id+"\"," +
+    //        "\"userId\":\""+((MyApplication)getApplicationContext()).userId+"\"," +
+    //        "\"colorId\":\""+colorID+"\"," +
+    //        "\"sizeId\":\""+sizeID+"\"}
+    //        购物车列表接口: cartlist.php
+    //        参数: parames={\"userId\":\""+((MyApplication)getApplicationContext()).userId+"\"}
+    //        购物车提交商品接口: UpOrder.php
+    //        参数: parames={userid:1,goods[{goodsid:1,color:hong,size:x
+    //        num:1},{goodsid:1,color:hong,size:x
+    //        num:1}]}
+//    public static final String JSON_GOODS = JSON_HEAD + "";
+
     public static final String ALL_BRAND_BODY = "parames={\\\"page\\\":\\\"10\\\"}";
 
     //        热门品牌接口: hotbrand.php
     public static final String JSON_HORIZONTAL_RV = JSON_HEAD + "hotbrand.php";
 
-    //        参数:
-//        获取关注列表接口: follow.php
+    //        获取关注列表接口: follow.php
     public static final String JSON_FOLLOW = JSON_HEAD + "follow.php";
+//    public static final String JSON_GOODS = JSON_HEAD + "";
+    public static final String JSON_GOODS = JSON_HEAD + "";
+    //        参数: parames={\"userid\":\"
+    //        userId+"\"}
+    public static final String JSON_GOODS_ORDER_CONFIRM = JSON_HEAD + "";
+    //        确认订单接口: Confirm.php
+    //        参数:
+    public static final String JSON_LIST_GOODS_ORDER = JSON_HEAD + "OkOrder.php";
+    //        订单列表接口: OkOrder.php
+    //        刷新购物车列表接口: RefrashCart.php
+    //        参数:
+    //        获取新闻接口: news.php
+    //        参数:
+    //        登陆接口: yohologin.php
+    //        参数:
+    //        注册接口: yohoregiste.php
+    //        参数:
+    //        上传头像接口: yohouphead.php
+    //        参数:
+    //        获取品牌商品数据源: brandvalue.php
 
-//        参数:
-//        获取商品详情: goodsvalue.php
-//        参数: parames={\"goods_id\":\""+id+"\"}
-//        收藏商品接口: CollectionShop.php
-//        参数:
-//        添加购物车接口: addcart.php
-//        参数: parames={\"goodsId\":\""+list.get(0)._id+"\"," +
-//        "\"userId\":\""+((MyApplication)getApplicationContext()).userId+"\"," +
-//        "\"colorId\":\""+colorID+"\"," +
-//        "\"sizeId\":\""+sizeID+"\"}
-//        购物车列表接口: cartlist.php
-//        参数: parames={\"userId\":\""+((MyApplication)getApplicationContext()).userId+"\"}
-//        购物车提交商品接口: UpOrder.php
-//        参数: parames={userid:1,goods[{goodsid:1,color:hong,size:x
-//        num:1},{goodsid:1,color:hong,size:x
-//        num:1}]}
-//        订单列表接口: OkOrder.php
-//        参数:
-//        确认订单接口: Confirm.php
-//        参数: parames={\"userid\":\"
-//        userId+"\"}
-//        刷新购物车列表接口: RefrashCart.php
-//        参数:
-//        获取新闻接口: news.php
-//        参数:
-//        登陆接口: yohologin.php
-//        参数:
-//        注册接口: yohoregiste.php
-//        参数:
-//        上传头像接口: yohouphead.php
-//        参数:
-//        获取品牌商品数据源: brandvalue.php
-//        参数:
-//        获取服务器apk版本接口: upVersion.php
-//        参数:
+    public static final String JSON_CART_FLUSH = JSON_HEAD + "RefrashCart.php";
+    public static final String JSON_NEWS = JSON_HEAD + "news.php";
+    public static final String JSON_LOGIN = JSON_HEAD + "yohologin.php";
+    public static final String JSON_REGIST = JSON_HEAD + "yohoregiste.php";
+    public static final String JSON_HEAD_IMG_UPLOAD = JSON_HEAD + "yohouphead.php";
+    public static final String JSON_BRAND_VALUE = JSON_HEAD + "brandvalue.php";
+    public static final String JSON_VERSION = JSON_HEAD + "upVersion.php";
+    //        获取服务器apk版本接口: upVersion.php
+    //        参数:
 }
