@@ -9,4 +9,8 @@ public class DeminUtils {
     public static int dp2px(int dpValue) {
         return (int) (MyApplication.app.getResources().getDisplayMetrics().density * dpValue + 0.5f);
     }
+
+    public static int sp2px(int spValue){
+        return (int) (MyApplication.app.getResources().getDisplayMetrics().scaledDensity*spValue);
+    }
 }

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:background="#fff"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="10dp">
+
+    <RadioButton
+        android:id="@+id/first_rb_boy"
+        style="@style/first_rb_style"
+        android:checked="true"
+        android:text="全部品牌" />
+
+    <RadioButton style="@style/first_rbline_style" />
+
+    <RadioButton
+        android:id="@+id/first_rb_girl"
+        style="@style/first_rb_style"
+        android:text="新入驻品牌" />
+
+    <RadioButton style="@style/first_rbline_style" />
+
+    <RadioButton
+        android:id="@+id/first_rb_lifeStyle"
+        style="@style/first_rb_style"
+        android:text="热门品牌" />
+</RadioGroup>

@@ -1,5 +1,6 @@
 package schaffer.myoho.Fragment;
 
+import android.graphics.Color;
 import android.support.design.widget.TabLayout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,7 +40,7 @@ public class FragmentCategory extends BaseFragment {
 
     @Override
     protected void initAdapter() {
-        adapter = new CategoryPagerAdapter(getFragmentManager(), list);
+        adapter = new CategoryPagerAdapter(getChildFragmentManager(), list);
         categorypager.setAdapter(adapter);
         categorytbtab.setupWithViewPager(categorypager);
     }
@@ -50,6 +51,8 @@ public class FragmentCategory extends BaseFragment {
         this.categorypager = (CategoryViewPager) view.findViewById(R.id.category_pager);
         this.categorytb = (RelativeLayout) view.findViewById(R.id.category_tb);
         this.categorytbtab = (TabLayout) view.findViewById(R.id.category_tb_tab);
+        categorytbtab.setTabTextColors(Color.WHITE, Color.WHITE);
+        categorytbtab.setTabMode(TabLayout.MODE_FIXED);
         return view;
     }
 }

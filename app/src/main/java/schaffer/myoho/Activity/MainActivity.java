@@ -105,9 +105,11 @@ public class MainActivity extends AppCompatActivity {
     public void bottomItemClick(View view) {
         switch (view.getId()) {
             case R.id.main_rb_homeome:
+
                 dumpToFragment((String) mainRbHomeome.getTag());
                 break;
             case R.id.main_rb_category:
+                fragmentMap.put(FragmentCategory.class.getSimpleName(), new FragmentCategory());
                 dumpToFragment((String) mainRbCategory.getTag());
                 break;
             case R.id.main_rb_roam:

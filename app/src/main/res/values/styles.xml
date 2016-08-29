@@ -15,4 +15,31 @@
         <item name="android:button">@null</item>
         <item name="android:gravity">center</item>
     </style>
+
+    <style name="first_rb_style">
+        <item name="android:gravity">center</item>
+        <item name="android:button">@null</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textColor">@color/selector_main_rb_text_color</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="first_rbline_style">
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:button">@null</item>
+        <item name="android:background">#444</item>
+        <item name="android:enabled">false</item>
+        <item name="android:layout_width">1px</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <declare-styleable name="RadioView">
+        <attr name="number" format="integer" />
+        <attr name="numColor" format="color|reference" />
+        <attr name="showDot" format="boolean" />
+    </declare-styleable>
 </resources>

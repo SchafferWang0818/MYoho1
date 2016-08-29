@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/first_rb_boy"
+            style="@style/first_rb_style"
+            android:checked="true"
+            android:text="Boy" />
+
+        <RadioButton style="@style/first_rbline_style" />
+
+        <RadioButton
+            android:id="@+id/first_rb_girl"
+            style="@style/first_rb_style"
+            android:text="Girl" />
+
+        <RadioButton style="@style/first_rbline_style" />
+
+        <RadioButton
+            android:id="@+id/first_rb_lifeStyle"
+            style="@style/first_rb_style"
+            android:text="LifeStyle" />
+    </RadioGroup>
+
+    <schaffer.myoho.DefinedView.CategoryViewPager
+        android:id="@+id/first_group_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

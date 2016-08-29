@@ -20,8 +20,8 @@ public class ChooseActivity extends AppCompatActivity {
     }
 
     private void dumpToMain() {
-        overridePendingTransition(R.anim.main_in,R.anim.choose_out);
         Intent intent = new Intent(this, MainActivity.class);
+        overridePendingTransition(R.anim.main_in,R.anim.choose_out);
         startActivity(intent);
     }
 

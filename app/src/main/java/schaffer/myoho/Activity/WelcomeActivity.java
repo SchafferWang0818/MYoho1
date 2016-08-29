@@ -20,6 +20,7 @@ public class WelcomeActivity extends AppCompatActivity {
     private android.widget.ImageView welcomeiv;
     private android.widget.ImageView welcomecurtain;
     private ValueAnimator animator;
+    private AlphaAnimation alpha;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,7 @@ public class WelcomeActivity extends AppCompatActivity {
      * 设置动画,先设置透明度补间动画   然后设置缩放属性动画
      */
     private void init() {
-        final AlphaAnimation alpha = new AlphaAnimation(1, 0.5f);
+        alpha = new AlphaAnimation(1, 0.5f);
         alpha.setFillAfter(true);
         alpha.setDuration(1500);
         animator = ValueAnimator.ofFloat(1.5f, 1);
@@ -80,10 +81,12 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     public void dump(View view) {
+        welcomecurtain.clearAnimation();
+        alpha.cancel();
+        animator.cancel();
+        animator.removeAllUpdateListeners();
         Intent intent = new Intent(WelcomeActivity.this, ChooseActivity.class);
         startActivity(intent);
         finish();
     }
-
-
 }
