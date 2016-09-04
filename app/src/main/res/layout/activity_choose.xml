@@ -7,9 +7,9 @@
     android:gravity="center"
     tools:context="schaffer.myoho.Activity.ChooseActivity">
 
-    <schaffer.myoho.DefinedView.RbGroupView
+    <schaffer.myoho.DefinedView.DRadioGroup
         android:layout_width="wrap_content"
-        android:layout_height="300dp"
+        android:layout_height="450dp"
 
         android:orientation="vertical">
 
@@ -40,5 +40,5 @@
             android:onClick="lifeStyle"
             android:background="@null"
             android:src="@drawable/selector_choose_lifestyle" />
-    </schaffer.myoho.DefinedView.RbGroupView>
+    </schaffer.myoho.DefinedView.DRadioGroup>
 </RelativeLayout>

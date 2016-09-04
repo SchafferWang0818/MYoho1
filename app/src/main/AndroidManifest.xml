@@ -28,8 +28,8 @@
             android:name=".Activity.ChooseActivity"
             android:launchMode="singleTask" />
         <activity android:name=".Activity.CartActivity" />
-        <activity android:name=".Activity.BrandInfoActvity" />
-        <activity android:name=".Activity.GoodActivity">
+        <activity android:name=".Activity.BrandInfoActivity" />
+        <activity android:name=".Activity.GoodsDetailActivity">
             <!--<intent-filter>-->
             <!--<action android:name="android.intent.action.MAIN" />-->
             <!--<category android:name="android.intent.category.LAUNCHER" />-->

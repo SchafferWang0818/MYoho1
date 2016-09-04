@@ -18,9 +18,9 @@ import schaffer.myoho.Adapter.HomeLvAdapter;
 import schaffer.myoho.Base.BaseFragment;
 import schaffer.myoho.Bean.HomeBean;
 import schaffer.myoho.Bean.HomeGvHeaderBean;
-import schaffer.myoho.DefinedView.MGridView;
-import schaffer.myoho.DefinedView.PagerDotView;
-import schaffer.myoho.DefinedView.RefreshListView;
+import schaffer.myoho.DefinedView.DGridView;
+import schaffer.myoho.DefinedView.DotPagerView;
+import schaffer.myoho.DefinedView.DRefreshListView;
 import schaffer.myoho.R;
 import schaffer.myoho.Utils.DeminUtils;
 import schaffer.myoho.Utils.HttpUtils;
@@ -31,10 +31,10 @@ import schaffer.myoho.Utils.PathUtils;
 /**
  * Created by a7352 on 2016/8/23.
  */
-public class FragmentHome extends BaseFragment implements RefreshListView.OnRefreshListener {
+public class FragmentHome extends BaseFragment implements DRefreshListView.OnRefreshListener {
 
     private RelativeLayout hometb;
-    private schaffer.myoho.DefinedView.RefreshListView homelv;
+    private schaffer.myoho.DefinedView.DRefreshListView homelv;
     private android.widget.ViewFlipper homeflipper;
     private List<List<HomeBean.BrandBean>> homebeanLists;
     private HomeLvAdapter adapter;
@@ -89,7 +89,7 @@ public class FragmentHome extends BaseFragment implements RefreshListView.OnRefr
     protected View initViews(LayoutInflater inflater, ViewGroup container) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         homeflipper = (ViewFlipper) view.findViewById(R.id.home_flipper);
-        homelv = (RefreshListView) view.findViewById(R.id.home_lv);
+        homelv = (DRefreshListView) view.findViewById(R.id.home_lv);
         hometb = (RelativeLayout) view.findViewById(R.id.home_tb);
         int height = ac.getWindowManager().getDefaultDisplay().getHeight();
         MLog.w(height + "height");
@@ -102,7 +102,7 @@ public class FragmentHome extends BaseFragment implements RefreshListView.OnRefr
     }
 
     private void initLvHeader() {
-        MGridView gv = new MGridView(getContext());
+        DGridView gv = new DGridView(getContext());
         List<HomeGvHeaderBean> list = new ArrayList<>();
         list.add(new HomeGvHeaderBean(R.drawable.btn_1, "title1"));
         list.add(new HomeGvHeaderBean(R.drawable.btn_2, "title2"));
@@ -116,11 +116,11 @@ public class FragmentHome extends BaseFragment implements RefreshListView.OnRefr
         gv.setNumColumns(4);
 
 
-        PagerDotView pagerDotView = new PagerDotView(getContext());
-        pagerDotView.getData(PathUtils.JSON_PAGE, "");
+        DotPagerView dotPagerView = new DotPagerView(getContext());
+        dotPagerView.getData(PathUtils.JSON_PAGE, "");
         AbsListView.LayoutParams layoutParams = new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, DeminUtils.dp2px(210));
-        pagerDotView.setLayoutParams(layoutParams);
-        homelv.addHeadView(pagerDotView);
+        dotPagerView.setLayoutParams(layoutParams);
+        homelv.addHeadView(dotPagerView);
         homelv.addHeadView(gv);
     }
 

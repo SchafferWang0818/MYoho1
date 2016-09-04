@@ -31,7 +31,7 @@ import schaffer.myoho.Utils.PathUtils;
 /**
  * Created by a7352 on 2016/8/25.
  */
-public class PagerDotView extends RelativeLayout {
+public class DotPagerView extends RelativeLayout {
 
     //    public String path = "http://www.iwens.org/School_Sky/yohoadvert.php";
     private ViewPager pager;
@@ -40,15 +40,15 @@ public class PagerDotView extends RelativeLayout {
     public List<ImageView> pageImgList = new ArrayList<>();
     private boolean drag;
 
-    public PagerDotView(Context context) {
+    public DotPagerView(Context context) {
         this(context, null);
     }
 
-    public PagerDotView(Context context, AttributeSet attrs) {
+    public DotPagerView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public PagerDotView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public DotPagerView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initChildView();
     }

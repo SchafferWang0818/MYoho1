@@ -21,6 +21,7 @@ import java.util.List;
 
 import schaffer.myoho.Base.BaseFragment;
 import schaffer.myoho.Base.MyApplication;
+import schaffer.myoho.DefinedView.DRadioButton;
 import schaffer.myoho.Fragment.FragmentCart;
 import schaffer.myoho.Fragment.FragmentCategory;
 import schaffer.myoho.Fragment.FragmentHome;
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     RadioButton mainRbHomeome;
     RadioButton mainRbCategory;
     RadioButton mainRbRoam;
-    RadioButton mainRbCart;
+    DRadioButton mainRbCart;
     RadioButton mainRbMine;
     RadioGroup mainTopRbGroup;
     FrameLayout mainTopGroup;
@@ -58,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initViews();
+        mainRbCart.setShow(true, 10);
         initFragment();
         setRadioTag();
         mainRbHomeome.performClick();
@@ -90,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
         mainRbHomeome = (RadioButton) findViewById(R.id.main_rb_homeome);
         mainRbCategory = (RadioButton) findViewById(R.id.main_rb_category);
         mainRbRoam = (RadioButton) findViewById(R.id.main_rb_roam);
-        mainRbCart = (RadioButton) findViewById(R.id.main_rb_cart);
+        mainRbCart = (DRadioButton) findViewById(R.id.main_rb_cart);
         mainRbMine = (RadioButton) findViewById(R.id.main_rb_mine);
         mainBottomLv = (ListView) findViewById(R.id.main_bottom_lv);
         radioButtons = new ArrayList<>();

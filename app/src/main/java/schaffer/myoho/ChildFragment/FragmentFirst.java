@@ -60,13 +60,13 @@ public class FragmentFirst extends BaseChildFragment {
 //        new HttpUtils().cancelAll();
         switch (view.getId()) {
             case R.id.first_rb_boy:
-                firstGroupPager.setCurrentItem(0, true);
+                firstGroupPager.setCurrentItem(0, false);
                 break;
             case R.id.first_rb_girl:
-                firstGroupPager.setCurrentItem(1, true);
+                firstGroupPager.setCurrentItem(1, false);
                 break;
             case R.id.first_rb_lifeStyle:
-                firstGroupPager.setCurrentItem(2, true);
+                firstGroupPager.setCurrentItem(2, false);
                 break;
         }
     }

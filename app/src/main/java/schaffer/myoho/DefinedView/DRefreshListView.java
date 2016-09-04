@@ -18,7 +18,7 @@ import schaffer.myoho.R;
 /**
  * Created by a7352 on 2016/8/29.
  */
-public class RefreshListView extends RelativeLayout {
+public class DRefreshListView extends RelativeLayout {
 
 
     private View header;
@@ -40,15 +40,15 @@ public class RefreshListView extends RelativeLayout {
     private boolean isLoadTop;
     private boolean isLoadFoot;
 
-    public RefreshListView(Context context) {
+    public DRefreshListView(Context context) {
         this(context, null);
     }
 
-    public RefreshListView(Context context, AttributeSet attrs) {
+    public DRefreshListView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public RefreshListView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public DRefreshListView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }

@@ -12,7 +12,7 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 
-import schaffer.myoho.Activity.BrandInfoActvity;
+import schaffer.myoho.Activity.BrandInfoActivity;
 import schaffer.myoho.Adapter.BaseListAdapter;
 import schaffer.myoho.Bean.CateBoyBean;
 import schaffer.myoho.R;
@@ -166,8 +166,8 @@ public class FragmentFirst_Boy extends BaseCategoryFragment implements HttpUtils
         rightLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(a, BrandInfoActvity.class);
-                intent.putExtra("brand", position + "");
+                Intent intent = new Intent(a, BrandInfoActivity.class);
+                intent.putExtra("brand", "item--->"+position);
                 startActivity(intent);
             }
         });

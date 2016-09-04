@@ -37,12 +37,11 @@
         <item name="android:layout_height">match_parent</item>
     </style>
 
-    <declare-styleable name="RadioView">
-        <attr name="number" format="integer" />
-        <attr name="numColor" format="color|reference" />
+    <declare-styleable name="DRadioButton">
+        <attr name="num" format="integer" />
         <attr name="showDot" format="boolean" />
+        <attr name="numColor" format="color|reference|integer" />
     </declare-styleable>
-
     <style name="pop">
         <item name="android:windowEnterAnimation">@anim/fragment_trans_in</item>
         <item name="android:windowExitAnimation">@anim/fragment_trans_out</item>
@@ -82,7 +81,7 @@
         <item name="android:textColor">#fff</item>
     </style>
 
-    <declare-styleable name="MTabView">
+    <declare-styleable name="DTabView">
         <attr name="textSize" format="dimension" />
         <attr name="textColor" format="color|reference" />
         <attr name="text" format="string|reference" />

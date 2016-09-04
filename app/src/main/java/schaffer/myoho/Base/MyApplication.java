@@ -11,7 +11,7 @@ public class MyApplication extends Application {
     public static MyApplication app;
     public static final String IS_FIRST = "isFirst";
     public static boolean isLogin = true;
-    public static UserBean user = new UserBean(0,"path","name");
+    public static UserBean user = new UserBean(0, "path", "name");
 
     @Override
     public void onCreate() {

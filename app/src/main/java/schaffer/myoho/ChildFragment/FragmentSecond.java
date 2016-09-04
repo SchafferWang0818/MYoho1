@@ -29,7 +29,7 @@ import schaffer.myoho.Bean.AllBrandBean;
 import schaffer.myoho.Bean.AllBrandLetterBean;
 import schaffer.myoho.DefinedView.ForSearch.MySearchView;
 import schaffer.myoho.DefinedView.HorizontalListView;
-import schaffer.myoho.DefinedView.PagerDotView;
+import schaffer.myoho.DefinedView.DotPagerView;
 import schaffer.myoho.Event.SecondSwitchEvent;
 import schaffer.myoho.R;
 import schaffer.myoho.Utils.DeminUtils;
@@ -49,7 +49,7 @@ public class FragmentSecond extends BaseChildFragment {
     private android.widget.ProgressBar evPb;
     private android.widget.RelativeLayout emptyView;
     private View searchView;
-    private PagerDotView pagerDotView;
+    private DotPagerView dotPagerView;
     private HorizontalListView horLv;
     private List<AllBrandLetterBean> letterBeanList;
     private int currentChild;
@@ -88,9 +88,9 @@ public class FragmentSecond extends BaseChildFragment {
     }
 
     private void initHeaderView() {
-        pagerDotView = new PagerDotView(activity);
+        dotPagerView = new DotPagerView(activity);
         ExpandableListView.LayoutParams pageParams = new AbsListView.LayoutParams(AbsListView.LayoutParams.MATCH_PARENT, DeminUtils.dp2px(180));
-        pagerDotView.setLayoutParams(pageParams);
+        dotPagerView.setLayoutParams(pageParams);
 
         searchView = View.inflate(activity, R.layout.item_cate_brand_head_search, null);
         ExpandableListView.LayoutParams searchParams = new AbsListView.LayoutParams(AbsListView.LayoutParams.MATCH_PARENT, DeminUtils.dp2px(70));
@@ -103,7 +103,7 @@ public class FragmentSecond extends BaseChildFragment {
         horLv.loadData(PathUtils.JSON_HORIZONTAL_RV, "");
         exLv.addHeaderView(View.inflate(activity, R.layout.item_cate_brand_head_type, null));
         exLv.addHeaderView(horLv);
-        exLv.addHeaderView(pagerDotView);
+        exLv.addHeaderView(dotPagerView);
         exLv.addHeaderView(searchView);
     }
 

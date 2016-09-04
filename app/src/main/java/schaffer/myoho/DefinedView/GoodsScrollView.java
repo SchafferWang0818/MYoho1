@@ -14,7 +14,7 @@ import schaffer.myoho.Utils.MLog;
 /**
  * Created by a7352 on 2016/8/31.
  */
-public class GoodScrollView extends ScrollView {
+public class GoodsScrollView extends ScrollView {
 
 
     private int y;
@@ -32,15 +32,15 @@ public class GoodScrollView extends ScrollView {
     private Activity a;
 
 
-    public GoodScrollView(Context context) {
+    public GoodsScrollView(Context context) {
         this(context, null);
     }
 
-    public GoodScrollView(Context context, AttributeSet attrs) {
+    public GoodsScrollView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public GoodScrollView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public GoodsScrollView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         a = (Activity) context;
         init();

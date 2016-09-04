@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.SlidingPaneLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_slide"
     android:layout_width="match_parent"
@@ -55,12 +56,15 @@
                 android:onClick="bottomItemClick"
                 android:text="淘" />
 
-            <RadioButton
+            <schaffer.myoho.DefinedView.DRadioButton
                 android:id="@+id/main_rb_cart"
                 style="@style/main_rb_style"
                 android:drawableTop="@drawable/selector_main_rb_cart"
                 android:onClick="bottomItemClick"
-                android:text="购物车" />
+                android:text="购物车"
+                app:num="0"
+                app:numColor="#fff"
+                app:showDot="true" />
 
             <RadioButton
                 android:id="@+id/main_rb_mine"

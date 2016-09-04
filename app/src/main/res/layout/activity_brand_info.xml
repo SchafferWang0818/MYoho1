@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="schaffer.myoho.Activity.BrandInfoActvity">
+    tools:context=".Activity.BrandInfoActivity">
     <RelativeLayout
         android:background="#323232"
         style="@style/toolbar_group">

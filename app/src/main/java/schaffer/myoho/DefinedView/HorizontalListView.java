@@ -54,8 +54,6 @@ public class HorizontalListView extends LinearLayout {
 
     public void loadData(String path, String requestBody) {
         new HttpUtils().loadData(path, requestBody).setOnLoadDataListener(new HttpUtils.OnLoadDataListener() {
-            private List<HotBrandBean.BrandBean> brand;
-
             @Override
             public void loadSuccess(String content) {
                 boolean isJson = content.startsWith("{") || content.startsWith("[");

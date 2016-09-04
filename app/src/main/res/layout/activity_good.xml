@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/goods_detail_group"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -45,13 +46,16 @@
         android:layout_alignParentBottom="true"
         android:background="#fff">
 
-        <ImageButton
+        <schaffer.myoho.DefinedView.DRadioButton
             android:id="@+id/goods_detail_cart_btn"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/goods_cart" />
+            android:background="@drawable/goods_cart"
+            app:num="10"
+            app:numColor="#fff"
+            app:showDot="true" />
 
         <Button
             android:id="@+id/goods_detail_add_btn"
@@ -78,7 +82,7 @@
     </RelativeLayout>
 
 
-    <schaffer.myoho.DefinedView.GoodScrollView
+    <schaffer.myoho.DefinedView.GoodsScrollView
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -138,7 +142,7 @@
                     android:textSize="18sp" />
             </LinearLayout>
 
-            <schaffer.myoho.DefinedView.MListView
+            <schaffer.myoho.DefinedView.DListView
                 android:id="@+id/goods_detail_detail_detail_lv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -148,5 +152,5 @@
 
         </LinearLayout>
 
-    </schaffer.myoho.DefinedView.GoodScrollView>
+    </schaffer.myoho.DefinedView.GoodsScrollView>
 </RelativeLayout>

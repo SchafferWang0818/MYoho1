@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import schaffer.myoho.Utils.MLog;
 import schaffer.myoho.Utils.MToast;
 
 /**
@@ -34,8 +35,10 @@ public abstract class BaseChildFragment extends Fragment {
         if (view == null) {
             view = initViews(inflater, container);
 
-            if (isVisible&&isPrepared)
+            if (isVisible && isPrepared) {
                 initContent();
+                MLog.w(getClass().getSimpleName()+"请求数据");
+            }
         }
         return view;
     }
@@ -58,7 +61,7 @@ public abstract class BaseChildFragment extends Fragment {
 //            initContent();
         } else {
             isVisible = false;
-            MToast.notifys(getClass().getSimpleName()+"未可见");
+            MToast.notifys(getClass().getSimpleName() + "未可见");
         }
     }
 

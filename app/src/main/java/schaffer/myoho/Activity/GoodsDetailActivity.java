@@ -29,7 +29,7 @@ import schaffer.myoho.Adapter.GoodDetailPageAdapter;
 import schaffer.myoho.Base.BaseActivity;
 import schaffer.myoho.Base.BaseAnimatorListener;
 import schaffer.myoho.Bean.GoodsDetailBean;
-import schaffer.myoho.DefinedView.MListView;
+import schaffer.myoho.DefinedView.DListView;
 import schaffer.myoho.Dialog.AddCartDialog;
 import schaffer.myoho.Dialog.LoadDialog;
 import schaffer.myoho.R;
@@ -42,7 +42,7 @@ import schaffer.myoho.Utils.PathUtils;
 /**
  * Created by a7352 on 2016/8/31.
  */
-public class GoodActivity extends BaseActivity implements AddCartDialog.OnAddToCartListener {
+public class GoodsDetailActivity extends BaseActivity implements AddCartDialog.OnAddToCartListener {
     private android.widget.RelativeLayout goodsdetailtoolbar;
     private android.widget.ImageButton cartBtn;
     private android.widget.Button addBtn;
@@ -51,7 +51,7 @@ public class GoodActivity extends BaseActivity implements AddCartDialog.OnAddToC
     private android.support.v4.view.ViewPager pager;
     private android.widget.TextView detailTv;
     private android.widget.TextView priceTv;
-    private schaffer.myoho.DefinedView.MListView lv;
+    private schaffer.myoho.DefinedView.DListView lv;
     private List<GoodsDetailBean.GoodsBean> detailList;
     private List<GoodsDetailBean.ImgBean> imgBeen;
     private List<GoodsDetailBean.ImgvaleBean> lvList;
@@ -77,8 +77,8 @@ public class GoodActivity extends BaseActivity implements AddCartDialog.OnAddToC
             @Override
             public void onClick(View v) {
                 if (detailBean != null) {
-                    dialog = new AddCartDialog(GoodActivity.this, detailBean);
-                    dialog.setOnAddToCartListener(GoodActivity.this);
+                    dialog = new AddCartDialog(GoodsDetailActivity.this, detailBean);
+                    dialog.setOnAddToCartListener(GoodsDetailActivity.this);
                     dialog.show();
                 } else {
                     MToast.notifys("数据没有准备好,无法选择");
@@ -139,7 +139,7 @@ public class GoodActivity extends BaseActivity implements AddCartDialog.OnAddToC
 
     private void initViews() {
         group = (RelativeLayout) findViewById(R.id.goods_detail_group);
-        this.lv = (MListView) findViewById(R.id.goods_detail_detail_detail_lv);
+        this.lv = (DListView) findViewById(R.id.goods_detail_detail_detail_lv);
         this.priceTv = (TextView) findViewById(R.id.goods_detail_price_tv);
         this.detailTv = (TextView) findViewById(R.id.goods_detail_detail_tv);
         this.pager = (ViewPager) findViewById(R.id.goods_detail_img_page);

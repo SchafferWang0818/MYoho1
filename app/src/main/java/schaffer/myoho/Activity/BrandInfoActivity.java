@@ -12,7 +12,7 @@ import schaffer.myoho.Fragment.FragmentInfo;
 import schaffer.myoho.Fragment.FragmentTransInfo;
 import schaffer.myoho.R;
 
-public class BrandInfoActvity extends AppCompatActivity {
+public class BrandInfoActivity extends AppCompatActivity {
 
     private android.widget.TextView titleTv;
     private android.widget.FrameLayout frameLayout;
@@ -40,10 +40,10 @@ public class BrandInfoActvity extends AppCompatActivity {
         boolean isAdd = transInfo.isAdd;
         int backStackEntryCount = fm.getBackStackEntryCount();
         if (isAdd && backStackEntryCount == 1) {
-            fm.popBackStack("back",FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            fm.popBackStack("back", FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
         } else if (!isAdd && backStackEntryCount == 0) {
-            fm.beginTransaction().add(R.id.activity_brand_fragment_group,transInfo, FragmentTransInfo.class.getSimpleName()).addToBackStack("back").commit();
+            fm.beginTransaction().add(R.id.activity_brand_fragment_group, transInfo, FragmentTransInfo.class.getSimpleName()).addToBackStack("back").commit();
         }
     }
 
