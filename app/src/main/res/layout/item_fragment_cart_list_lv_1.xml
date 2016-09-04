@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="160dp">
+
+    <CheckBox
+        android:id="@+id/item_cart_list_lv_cb1"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_margin="5dp"
+        android:button="@null"
+        android:drawableTop="@drawable/selector_cart_pay_rb"
+        android:text="" />
+
+    <ImageView
+        android:id="@+id/item_cart_list_lv_img_iv1"
+        android:layout_width="100dp"
+        android:layout_centerVertical="true"
+        android:layout_height="130dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@id/item_cart_list_lv_cb1"
+        android:scaleType="centerCrop"
+        android:src="@drawable/product_icon_loading_default" />
+
+    <TextView
+        android:id="@+id/item_cart_list_lv_num_tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:text=" × num"
+        android:textColor="#999"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="5dp"
+        android:layout_toLeftOf="@id/item_cart_list_lv_num_tv1"
+        android:layout_toRightOf="@id/item_cart_list_lv_img_iv1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/item_cart_list_lv_title_tv1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20sp"
+            android:maxLines="2"
+            android:text="this  is the goods's namethis  is the goods's namethis  is the goods's name"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/item_cart_list_lv_size_tv1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:maxLines="1"
+            android:text="this  is the goods's size and color"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/item_cart_list_lv_title_price1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20sp"
+            android:lines="1"
+            android:text="$ price"
+            android:textColor="#f00"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</RelativeLayout>

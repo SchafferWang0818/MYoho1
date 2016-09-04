@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="schaffer.myoho.Activity.BrandInfoActvity">
+    <RelativeLayout
+        android:background="#323232"
+        style="@style/toolbar_group">
+        <TextView
+            android:id="@+id/activity_brand_titleTv"
+            android:onClick="showFragment"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="商品详情"
+            android:textColor="#fff"
+            android:gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+    <FrameLayout
+        android:id="@+id/activity_brand_fragment_group"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
+</LinearLayout>

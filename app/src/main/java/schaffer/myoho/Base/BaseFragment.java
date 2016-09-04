@@ -8,20 +8,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import schaffer.myoho.Activity.MainActivity;
-
 /**
  * Created by a7352 on 2016/8/23.
  */
 public abstract class BaseFragment extends Fragment {
 
-    public MainActivity ac;
+    public Activity ac;
     private View view;
+    private boolean isVisible;
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        ac = (MainActivity) activity;
+        ac = activity;
     }
 
     @Nullable
@@ -29,9 +28,11 @@ public abstract class BaseFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if (view == null) {
             view = initViews(inflater, container);
-            initDatas();
-            initAdapter();
-            initListener();
+//            if (isVisible) {
+                initDatas();
+                initAdapter();
+                initListener();
+//            }
         }
         return view;
     }
@@ -48,4 +49,24 @@ public abstract class BaseFragment extends Fragment {
     protected abstract void initDatas();
 
     protected abstract View initViews(LayoutInflater inflater, ViewGroup container);
+
+
+//    @Override
+//    public void setUserVisibleHint(boolean isVisibleToUser) {
+//        MLog.w("setUserVisibleHint");
+//        super.setUserVisibleHint(isVisibleToUser);
+//        if (getUserVisibleHint()) {
+//            isVisible = true;
+//            load();
+//        } else {
+//            isVisible = false;
+//        }
+//    }
+
+    /**
+     * 加载一些内容
+     */
+    protected void load() {
+
+    }
 }

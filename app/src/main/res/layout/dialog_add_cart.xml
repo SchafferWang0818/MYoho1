@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/dialog_add_detail_iv"
+        android:layout_width="70dp"
+        android:layout_height="100dp"
+        android:layout_margin="10dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/product_icon_loading_default" />
+
+    <LinearLayout
+        android:id="@+id/dialog_good_detail"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignTop="@id/dialog_add_detail_iv"
+        android:layout_toRightOf="@id/dialog_add_detail_iv"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/dialog_good_add_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lines="2"
+            android:text="this is the good name"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/dialog_good_add_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lines="1"
+            android:text="this is the good price"
+            android:textColor="#f00"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/dialog_good_add_config"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_below="@id/dialog_good_detail"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:text="颜色"
+                android:textSize="18sp" />
+
+            <RadioGroup style="@style/style_dialog_addcart_choose_rg">
+
+                <RadioButton
+                    android:id="@+id/dialog_good_add_choose_color_1"
+                    style="@style/style_dialog_addcart_choose_rb"
+                    android:checked="true"
+                    android:text="黑色" />
+
+                <RadioButton
+                    android:id="@+id/dialog_good_add_choose_color_2"
+                    style="@style/style_dialog_addcart_choose_rb"
+                    android:text="蓝色" />
+
+                <RadioButton
+                    android:id="@+id/dialog_good_add_choose_color_3"
+                    style="@style/style_dialog_addcart_choose_rb"
+                    android:text="紫色" />
+            </RadioGroup>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:text="尺码"
+                android:textSize="18sp" />
+
+            <RadioGroup style="@style/style_dialog_addcart_choose_rg">
+
+                <RadioButton
+                    android:id="@+id/dialog_good_add_choose_size_1"
+                    style="@style/style_dialog_addcart_choose_rb"
+                    android:checked="true"
+                    android:text="S" />
+
+                <RadioButton
+                    android:id="@+id/dialog_good_add_choose_size_2"
+                    style="@style/style_dialog_addcart_choose_rb"
+                    android:text="M" />
+
+                <RadioButton
+                    android:id="@+id/dialog_good_add_choose_size_3"
+                    style="@style/style_dialog_addcart_choose_rb"
+                    android:text="L" />
+
+                <RadioButton
+                    android:id="@+id/dialog_good_add_choose_size_4"
+                    style="@style/style_dialog_addcart_choose_rb"
+                    android:text="XL" />
+                <!--<RadioButton-->
+                <!--android:id="@+id/dialog_good_add_choose_size_5"-->
+                <!--android:text="2XL"-->
+                <!--style="@style/style_dialog_addcart_choose_rb" />-->
+            </RadioGroup>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:text="数量"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/item_cart_list_lv_num_subtract_btn2"
+                style="@style/style_add_subtract_btn"
+                android:text="-" />
+
+            <TextView
+                android:id="@+id/dialog_good_add_num_tv"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="30dp"
+                android:gravity="center"
+                android:text="10"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/dialog_good_add_add_btn"
+                style="@style/style_add_subtract_btn"
+                android:text="+" />
+        </LinearLayout>
+    </LinearLayout>
+    <Button
+        android:layout_below="@id/dialog_good_add_config"
+        android:id="@+id/dialog_good_add_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="5dp"
+        android:background="@drawable/selector_good_detail_add_btn"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="确定"
+        android:textColor="#fff"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>

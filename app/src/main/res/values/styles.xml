@@ -42,4 +42,70 @@
         <attr name="numColor" format="color|reference" />
         <attr name="showDot" format="boolean" />
     </declare-styleable>
+
+    <style name="pop">
+        <item name="android:windowEnterAnimation">@anim/fragment_trans_in</item>
+        <item name="android:windowExitAnimation">@anim/fragment_trans_out</item>
+    </style>
+
+    <style name="style_info_tab">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="style_dialog_addcart_choose_rb">
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_width">60dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@drawable/selector_add_size_rb_bg</item>
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">5dp</item>
+    </style>
+
+    <style name="style_dialog_addcart_choose_rg">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="style_add_subtract_btn">
+
+        <item name="android:layout_width">25dp</item>
+        <item name="android:layout_height">25dp</item>
+        <item name="android:layout_marginLeft">30dp</item>
+        <item name="android:background">@drawable/dialog_add_subtract_btn_bg</item>
+        <item name="android:textColor">#fff</item>
+    </style>
+
+    <declare-styleable name="MTabView">
+        <attr name="textSize" format="dimension" />
+        <attr name="textColor" format="color|reference" />
+        <attr name="text" format="string|reference" />
+        <attr name="draw" format="reference" />
+    </declare-styleable>
+
+    <style name="style_dialog_add">
+        <item name="android:windowEnterAnimation">@anim/dialog_add_cart_in</item>
+        <item name="android:windowExitAnimation">@anim/dialog_add_cart_out</item>
+    </style>
+
+    <style name="toolbar_group">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:background">#323232</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+    </style>
+
+    <style name="style_cart_check_cb">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:button">@null</item>
+        <item name="android:padding">10dp</item>
+    </style>
 </resources>

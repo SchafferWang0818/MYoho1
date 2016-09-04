@@ -1,4 +1,4 @@
-package schaffer.myoho.Base;
+package schaffer.myoho.CategoryChildFragment;
 
 import android.animation.ObjectAnimator;
 import android.app.Activity;
@@ -8,10 +8,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import schaffer.myoho.R;
 
@@ -31,6 +35,8 @@ public abstract class BaseCategoryFragment extends Fragment {
     public int width;
     private int windowWidth;
     private ObjectAnimator animator;
+    private boolean isPrepared;
+    private boolean isVisible;
 
     @Override
     public void onAttach(Activity activity) {
@@ -41,11 +47,14 @@ public abstract class BaseCategoryFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        isPrepared = true;
         if (view == null) {
             view = initInflaterViews(inflater, container);
-            initData();
-            initAdapter();
-            initListener();
+            if (isVisible && isPrepared) {
+                initData();
+                initAdapter();
+                initListener();
+            }
         }
         return view;
     }
@@ -69,35 +78,53 @@ public abstract class BaseCategoryFragment extends Fragment {
         RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) rightGroup.getLayoutParams();
         layoutParams.width = width;
         rightGroup.setLayoutParams(layoutParams);
-        rightGroup.setTranslationX(windowWidth);
-
+        rightGroup.setTranslationX(width);
+        initRightLv();
         initAnim();
         return inflate;
     }
 
+    private void initRightLv() {
+
+        List<String> rightList = new ArrayList<>();
+        for (int i = 0; i < 40; i++) {
+            rightList.add("item--->" + i);
+        }
+        rightLv.setAdapter(new ArrayAdapter<String>(a, android.R.layout.simple_list_item_1, rightList));
+    }
+
+
     private void initAnim() {
         animator = ObjectAnimator.ofFloat(rightGroup, "translationX", 0, 0);
         animator.setDuration(300);
-
     }
 
     public void openRight() {
         animator.cancel();
-        animator.setFloatValues(0,width);
+        animator.setFloatValues(width,0);
         animator.start();
-
+        isOpen = true;
     }
 
     public void closeRight() {
         animator.cancel();
-        animator.setFloatValues(width, 0);
+        animator.setFloatValues(0, width);
         animator.start();
+        isOpen = false;
     }
 
 
     public boolean isOpen() {
-
         return rightGroup.getTranslationX() == width;
     }
-
+    public boolean isOpen = false;
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (getUserVisibleHint()) {
+            isVisible = true;
+        } else {
+            isVisible = false;
+        }
+    }
 }

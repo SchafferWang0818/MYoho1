@@ -33,11 +33,11 @@ import schaffer.myoho.Utils.PathUtils;
  */
 public class PagerDotView extends RelativeLayout {
 
-    public String path = "http://www.iwens.org/School_Sky/yohoadvert.php";
+    //    public String path = "http://www.iwens.org/School_Sky/yohoadvert.php";
     private ViewPager pager;
     private LinearLayout dotGroup;
     public List<PagerViewBean> dataBeans = new ArrayList<>();
-    public List<ImageView> pageImgList;
+    public List<ImageView> pageImgList = new ArrayList<>();
     private boolean drag;
 
     public PagerDotView(Context context) {
@@ -65,7 +65,8 @@ public class PagerDotView extends RelativeLayout {
 
             @Override
             public void onPageSelected(int position) {
-                selectDot(position);
+//                MLog.w("onPageSelected->"+position);
+                selectDot(position % pageImgList.size());
             }
 
             @Override
@@ -94,7 +95,7 @@ public class PagerDotView extends RelativeLayout {
         LayoutParams groupParams = new LayoutParams(LayoutParams.WRAP_CONTENT, DeminUtils.dp2px(10));
         groupParams.addRule(CENTER_HORIZONTAL);
         groupParams.addRule(ALIGN_PARENT_BOTTOM);
-        groupParams.bottomMargin = DeminUtils.dp2px(30);
+        groupParams.bottomMargin = DeminUtils.dp2px(40);
         dotGroup.setLayoutParams(groupParams);
         addView(dotGroup);
     }
@@ -111,7 +112,7 @@ public class PagerDotView extends RelativeLayout {
 
     public View getDot(boolean selected) {
         View dot = new View(getContext());
-        LinearLayout.MarginLayoutParams dotParams = new LinearLayout.LayoutParams(DeminUtils.dp2px(10),DeminUtils.dp2px(10));
+        LinearLayout.MarginLayoutParams dotParams = new LinearLayout.LayoutParams(DeminUtils.dp2px(10), DeminUtils.dp2px(10));
         dotParams.leftMargin = DeminUtils.dp2px(10);
         dot.setLayoutParams(dotParams);
         dot.setBackgroundResource(R.drawable.selector_dot_pagerdotview);
@@ -134,7 +135,7 @@ public class PagerDotView extends RelativeLayout {
                     MLog.w(dataBeans.toString());
                     for (int i = 0; i < dataBeans.size(); i++) {
                         ImageView iv = new ImageView(getContext());
-                        iv.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//                        iv.setScaleType(ImageView.ScaleType.CENTER_CROP);
                         MLog.w(PathUtils.IMG_HEAD + dataBeans.get(i).getImgpath());
                         Picasso.with(getContext()).load(PathUtils.IMG_HEAD + dataBeans.get(i).getImgpath()).fit().placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher).into(iv);
                         pageImgList.add(iv);
@@ -148,7 +149,7 @@ public class PagerDotView extends RelativeLayout {
 
             @Override
             public void loadFailed(String errorMsg) {
-                MLog.w("图片json加载失败"+errorMsg);
+                MLog.w("图片json加载失败" + errorMsg);
             }
         });
     }
@@ -159,7 +160,7 @@ public class PagerDotView extends RelativeLayout {
             super.handleMessage(msg);
             int currentItem = pager.getCurrentItem();
             pager.setCurrentItem(currentItem + 1);
-            handler.sendEmptyMessageDelayed(0, 1500);
+            handler.sendEmptyMessageDelayed(0, 4000);
         }
     };
 
@@ -172,8 +173,6 @@ public class PagerDotView extends RelativeLayout {
     }
 
     class MyPageAdapter extends PagerAdapter {
-
-
         @Override
         public int getCount() {
             return Integer.MAX_VALUE;
@@ -186,15 +185,14 @@ public class PagerDotView extends RelativeLayout {
 
         @Override
         public View instantiateItem(ViewGroup container, int position) {
-            if (pageImgList.size()>0){
-                ImageView imageView = pageImgList.get(position % pageImgList.size());
-                ViewParent parent = imageView.getParent();
-                if ((ViewGroup) parent != null) {
-                    ((ViewGroup) parent).removeView(imageView);
-                }
-                return imageView;
+//            MLog.w("pageImgList.size()>0?"+(pageImgList.size()>0));
+            ImageView imageView = pageImgList.get(position % pageImgList.size());
+            ViewParent parent = imageView.getParent();
+            if (parent != null) {
+                ((ViewGroup) parent).removeView(imageView);
             }
-            return null;
+            container.addView(imageView);
+            return imageView;
         }
 
         @Override

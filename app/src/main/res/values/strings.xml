@@ -31,6 +31,65 @@
         <item>item17</item>
         <item>item18</item>
     </string-array>
+    <string-array name="text">
+        <item>item1</item>
+        <item>item2</item>
+        <item>item3</item>
+        <item>item4</item>
+        <item>item5</item>
+        <item>item6</item>
+        <item>item7</item>
+        <item>item8</item>
+        <item>item9</item>
+        <item>item10</item>
+        <item>item11</item>
+        <item>item12</item>
+        <item>item13</item>
+        <item>item14</item>
+        <item>item15</item>
+        <item>item16</item>
+        <item>item17</item>
+        <item>item18</item>
+        <item>item1</item>
+        <item>item2</item>
+        <item>item3</item>
+        <item>item4</item>
+        <item>item5</item>
+        <item>item6</item>
+        <item>item7</item>
+        <item>item8</item>
+        <item>item9</item>
+        <item>item10</item>
+        <item>item11</item>
+        <item>item12</item>
+        <item>item13</item>
+        <item>item14</item>
+        <item>item15</item>
+        <item>item16</item>
+        <item>item17</item>
+        <item>item18</item>
+        <item>item1</item>
+        <item>item2</item>
+        <item>item3</item>
+        <item>item4</item>
+        <item>item5</item>
+        <item>item6</item>
+        <item>item7</item>
+        <item>item8</item>
+        <item>item9</item>
+        <item>item10</item>
+        <item>item11</item>
+        <item>item12</item>
+        <item>item13</item>
+        <item>item14</item>
+        <item>item15</item>
+        <item>item16</item>
+        <item>item17</item>
+        <item>item18</item>
+    </string-array>
     <item name="footer" type="id" />
     <item name="header" type="id" />
+    <item name="infoHeader" type="id" />
+    <item name="infoFooter" type="id" />
+
 </resources>

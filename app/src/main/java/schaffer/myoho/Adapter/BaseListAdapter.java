@@ -15,7 +15,11 @@ public abstract class BaseListAdapter<T> extends BaseAdapter {
 
     public BaseListAdapter(List<T> list) {
         this.list = list;
+    }
 
+    public BaseListAdapter(List<T> list, Context context) {
+        this.list = list;
+        this.context = context;
     }
 
     @Override

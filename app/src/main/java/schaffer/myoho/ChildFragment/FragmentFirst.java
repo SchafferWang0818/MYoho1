@@ -9,7 +9,7 @@ import java.util.List;
 
 import butterknife.OnClick;
 import schaffer.myoho.Adapter.CateSonPagerAdapter;
-import schaffer.myoho.Base.BaseCategoryFragment;
+import schaffer.myoho.CategoryChildFragment.BaseCategoryFragment;
 import schaffer.myoho.Base.BaseChildFragment;
 import schaffer.myoho.CategoryChildFragment.FragmentFirst_Boy;
 import schaffer.myoho.CategoryChildFragment.FragmentFirst_Girl;

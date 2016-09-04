@@ -3,14 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
-    <ProgressBar
-        android:id="@+id/footer_home_lv_pb"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="5dp"
-        android:visibility="gone" />
+    <!--<ProgressBar-->
+        <!--android:id="@+id/footer_home_lv_pb"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:layout_margin="5dp"-->
+        <!--android:visibility="invisible" />-->
 
     <TextView
         android:id="@+id/footer_home_lv_tv"

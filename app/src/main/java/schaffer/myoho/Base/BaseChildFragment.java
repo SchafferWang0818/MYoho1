@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import schaffer.myoho.Utils.MToast;
+
 /**
  * Created by a7352 on 2016/8/23.
  */
@@ -16,6 +18,8 @@ public abstract class BaseChildFragment extends Fragment {
 
     private View view;
     public Activity activity;
+    private boolean isVisible;
+    private boolean isPrepared;
 
     @Override
     public void onAttach(Activity activity) {
@@ -26,19 +30,37 @@ public abstract class BaseChildFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        isPrepared = true;
         if (view == null) {
             view = initViews(inflater, container);
-            initDatas();
-            initAdapter();
-            initListener();
+
+            if (isVisible&&isPrepared)
+                initContent();
         }
         return view;
+    }
+
+    private void initContent() {
+        initDatas();
+        initAdapter();
+        initListener();
     }
 
     protected void initListener() {
 
     }
 
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (getUserVisibleHint()) {
+            isVisible = true;
+//            initContent();
+        } else {
+            isVisible = false;
+            MToast.notifys(getClass().getSimpleName()+"未可见");
+        }
+    }
 
     protected void initAdapter() {
 

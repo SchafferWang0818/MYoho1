@@ -20,7 +20,7 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 import schaffer.myoho.Base.BaseChildFragment;
 import schaffer.myoho.Adapter.BaseListAdapter;
-import schaffer.myoho.Bean.FollowGodBean;
+import schaffer.myoho.Bean.FollowGoodsBean;
 import schaffer.myoho.R;
 import schaffer.myoho.Utils.HttpUtils;
 import schaffer.myoho.Utils.MToast;
@@ -33,8 +33,8 @@ public class FragmentThird extends BaseChildFragment {
 
 
     private ListView lv;
-    private List<FollowGodBean.FollowBean> follow;
-    private List<FollowGodBean.FollowBean> list = new ArrayList<>();;
+    private List<FollowGoodsBean.FollowBean> follow;
+    private List<FollowGoodsBean.FollowBean> list = new ArrayList<>();;
     private MyAdapter adapter;
     private boolean isScrolling;
     private RelativeLayout emptyView;
@@ -53,8 +53,8 @@ public class FragmentThird extends BaseChildFragment {
             public void loadSuccess(String content) {
 
                 if (content.startsWith("{") || content.startsWith("[")) {
-                    FollowGodBean followGodBean = new Gson().fromJson(content, FollowGodBean.class);
-                    follow = followGodBean.getFollow();
+                    FollowGoodsBean followGoodsBean = new Gson().fromJson(content, FollowGoodsBean.class);
+                    follow = followGoodsBean.getFollow();
                     if (follow.size() > 0) {
                         list.clear();
                         list.addAll(follow);
@@ -125,10 +125,10 @@ public class FragmentThird extends BaseChildFragment {
         return view;
     }
 
-    class MyAdapter extends BaseListAdapter<FollowGodBean.FollowBean> {
+    class MyAdapter extends BaseListAdapter<FollowGoodsBean.FollowBean> {
 
 
-        public MyAdapter(List<FollowGodBean.FollowBean> list) {
+        public MyAdapter(List<FollowGoodsBean.FollowBean> list) {
             super(list);
         }
 
@@ -156,7 +156,7 @@ public class FragmentThird extends BaseChildFragment {
             } else {
                 holder = (ViewHolder) convertView.getTag();
             }
-            FollowGodBean.FollowBean followBean = list.get(position);
+            FollowGoodsBean.FollowBean followBean = list.get(position);
             holder.brandName.setText(followBean.getBrandname());
             holder.goodDistance1.setText(followBean.getGoods().get(0).getDistance());
             holder.goodDistance2.setText(followBean.getGoods().get(1).getDistance());

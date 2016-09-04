@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <TextView
+        android:padding="5dp"
+        android:id="@+id/item_home_lv_titleTv"
+        android:textSize="20sp"
+        android:text="这是标题"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:id="@+id/item_home_lv_iv1"
+        android:src="@drawable/product_icon_loading_default"
+        android:scaleType="centerCrop"
+        android:layout_width="match_parent"
+        android:layout_height="150dp" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+        <ImageView
+            android:layout_width="0dp"
+            android:scaleType="centerCrop"
+            android:layout_weight="1"
+            android:src="@drawable/product_icon_loading_default"
+            android:id="@+id/item_home_lv_iv2"
+            android:layout_height="match_parent" />
+        <TableLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+            <TableRow
+                android:layout_weight="1"
+                >
+                <ImageView
+                    android:id="@+id/item_home_lv_iv3"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/product_icon_loading_default"
+                    android:layout_weight="1"/>
+                <ImageView
+                    android:id="@+id/item_home_lv_iv4"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/product_icon_loading_default"
+                    android:layout_weight="1"/>
+            </TableRow>
+            <TableRow
+                android:layout_weight="1">
+                <ImageView
+                    android:id="@+id/item_home_lv_iv5"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/product_icon_loading_default"
+                    android:layout_weight="1"/>
+                <ImageView
+                    android:id="@+id/item_home_lv_iv6"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/product_icon_loading_default"
+                    android:layout_weight="1"/>
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

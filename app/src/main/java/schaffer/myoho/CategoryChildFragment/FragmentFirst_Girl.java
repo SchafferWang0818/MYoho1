@@ -12,7 +12,6 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 
-import schaffer.myoho.Base.BaseCategoryFragment;
 import schaffer.myoho.Adapter.BaseListAdapter;
 import schaffer.myoho.Bean.CateGirlBean;
 import schaffer.myoho.R;

@@ -1,23 +1,24 @@
 package schaffer.myoho.CategoryChildFragment;
 
+import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import schaffer.myoho.Base.BaseCategoryFragment;
+import schaffer.myoho.Activity.BrandInfoActvity;
 import schaffer.myoho.Adapter.BaseListAdapter;
 import schaffer.myoho.Bean.CateBoyBean;
 import schaffer.myoho.R;
 import schaffer.myoho.Utils.HttpUtils;
 import schaffer.myoho.Utils.MLog;
+import schaffer.myoho.Utils.MToast;
 import schaffer.myoho.Utils.PathUtils;
 
 public class FragmentFirst_Boy extends BaseCategoryFragment implements HttpUtils.OnLoadDataListener, AdapterView.OnItemClickListener {
@@ -46,51 +47,76 @@ public class FragmentFirst_Boy extends BaseCategoryFragment implements HttpUtils
 
     @Override
     public void loadSuccess(String content) {
-        if (content.indexOf("boy") > 0) {
-            CateBoyBean boyBean = new Gson().fromJson(content, CateBoyBean.class);
-            MLog.w("boyBean.toString()--->" + boyBean.toString());
-            List<CateBoyBean.BoyBean> boy = boyBean.getBoy();
-            MLog.w("boy--->" + boy);
-            if (boy != null) {
-                list.clear();
-                list.addAll(boy);
-                adapter.notifyDataSetChanged();
-            }
-        } else {
-            MLog.e("当前json不属于boy");
+        CateBoyBean boyBean = new Gson().fromJson(content, CateBoyBean.class);
+        MLog.w("boyBean.toString()--->" + boyBean.toString());
+        List<CateBoyBean.BoyBean> boy = boyBean.getBoy();
+        if (boy != null) {
+            list.clear();
+            list.addAll(boy);
+            adapter.notifyDataSetChanged();
+            MToast.notifys("数据加载完成");
         }
     }
 
     @Override
     public void loadFailed(String errorMsg) {
-        Toast.makeText(a, errorMsg, Toast.LENGTH_SHORT).show();
+        MToast.notifys(getClass().getSimpleName() + ":" + errorMsg);
     }
 
     int lastPosition = -1;
 
+    /**
+     * translationX是相对于原位置的左上角而言的,实际位置没有发生改变
+     *
+     * @param parent
+     * @param view
+     * @param position
+     * @param id
+     */
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         //得到点击当前的position,然后得到当前的位置
-        if (adapter.getCount() >= 0) {
-            moveFinger(position);
-            MLog.w("" + isOpen()+"---->"+position);
-            if (isOpen()) {
-                if (lastPosition == position) {
-                    closeRight();
-                    MLog.w("打开时,位置相同则关闭");
-                } else {
-                    //切换数据
-                    requestChildData();
-                    MLog.w("打开时,位置不同不变化");
-                }
-            } else {
-                openRight();
-                if (lastPosition!=position){
-                    requestChildData();
-                }
-            }
+//        if (adapter.getCount() >= 0) {
+//            if (lastPosition==-1){
+//                MLog.w("第一次打开");
+//                openRight();
+//                moveFinger(position);
+//                lastPosition = position;
+//                return;
+//            }
+//            if (isOpen) {
+//                if (lastPosition == position) {
+//                    closeRight();
+//                    MLog.w("关闭");
+//                } else {
+//                    requestChildData();
+//                }
+//            } else {
+//                if (lastPosition==position){
+//                    MLog.w("打开");
+//                    closeRight();
+//                }
+//                if (lastPosition != position) {
+//                    openRight();
+//                    requestChildData();
+//                }
+//            }
+//            moveFinger(position);
+//            lastPosition = position;
+//        }
+        if (lastPosition == -1) {
+            openRight();
             lastPosition = position;
+            moveFinger(position);
+        } else if (lastPosition != position && position >= 0) {
+            moveFinger(position);
+            lastPosition = position;
+        } else {
+            closeRight();
+            lastPosition = -1;
         }
+        float translationX = rightGroup.getTranslationX();
+        MLog.w(translationX + "");
     }
 
     public void requestChildData() {
@@ -132,5 +158,20 @@ public class FragmentFirst_Boy extends BaseCategoryFragment implements HttpUtils
     class ViewHolder {
         ImageView iv;
         TextView typeTv;
+    }
+
+    @Override
+    protected void initListener() {
+        super.initListener();
+        rightLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(a, BrandInfoActvity.class);
+                intent.putExtra("brand", position + "");
+                startActivity(intent);
+            }
+        });
+
+
     }
 }

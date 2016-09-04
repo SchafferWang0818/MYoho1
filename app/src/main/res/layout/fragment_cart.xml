@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/fragment_cart_list_group"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_vertical">
+
+        <Button
+            android:id="@+id/fragment_cart_pay_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/selector_good_detail_add_btn"
+            android:gravity="center"
+            android:onClick="pay"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:text="结算"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/fragment_cart_care_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:layout_toLeftOf="@id/fragment_cart_pay_btn"
+            android:background="@drawable/selector_good_detail_add_btn"
+            android:gravity="center"
+            android:onClick="care"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:text="收藏"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/fragment_cart_money_num_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/fragment_cart_pay_btn"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/fragment_cart_pay_btn"
+            android:text="总计:$0.00 (0件)"
+            android:textColor="#f00"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/fragment_cart_freight_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/fragment_cart_money_num_tv"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="15dp"
+            android:layout_toLeftOf="@id/fragment_cart_pay_btn"
+            android:text="运费"
+            android:textColor="#777"
+            android:textSize="18sp" />
+
+        <CheckBox
+            android:id="@+id/fragment_cart_list_check_all"
+            style="@style/style_cart_check_cb"
+            android:drawableTop="@drawable/selector_cart_pay_rb"
+            android:text="全选" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/activity_cart_tb_group"
+        style="@style/toolbar_group">
+
+        <ImageButton
+            android:id="@+id/activity_cart_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/yoho_goods_back"
+            android:onClick="back"
+            android:visibility="gone" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/activity_cart_back"
+            android:gravity="center_vertical"
+            android:text="购物车"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:onClick="editCart"
+            android:text="编辑"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/fragment_cart_list_lv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/fragment_cart_list_group"
+        android:layout_below="@id/activity_cart_tb_group" />
+
+
+</RelativeLayout>

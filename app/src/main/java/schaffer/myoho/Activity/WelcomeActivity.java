@@ -5,17 +5,17 @@ import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.ImageView;
 
+import schaffer.myoho.Base.BaseActivity;
 import schaffer.myoho.Base.BaseAnimationListener;
 import schaffer.myoho.Base.BaseAnimatorListener;
 import schaffer.myoho.R;
 
-public class WelcomeActivity extends AppCompatActivity {
+public class WelcomeActivity extends BaseActivity {
 
     private android.widget.ImageView welcomeiv;
     private android.widget.ImageView welcomecurtain;
