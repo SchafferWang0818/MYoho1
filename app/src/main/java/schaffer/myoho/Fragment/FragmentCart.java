@@ -93,6 +93,21 @@ public class FragmentCart extends BaseFragment {
 //                }
 //                MLog.w("全选按钮当前状态-->" + checkAllCb.isChecked());
 //                adapter.notifyDataSetChanged();
+                if (!checkAllCb.isChecked()){
+                    //说明已经全选,将全部置为不选择
+//                    checkAllCb.setChecked(true);
+                    for (int i = 0; i < cart.size(); i++) {
+                        cart.get(i).setChecked(false);
+                    }
+                }else{
+                    //说明要置为全选
+                    for (int i = 0; i < cart.size(); i++) {
+                        if (!cart.get(i).isChecked()){
+                            cart.get(i).setChecked(true);
+                        }
+                    }
+                }
+                adapter.notifyDataSetChanged();
             }
         });
 //        checkAllCb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
