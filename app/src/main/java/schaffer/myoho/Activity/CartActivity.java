@@ -4,11 +4,13 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import org.greenrobot.eventbus.EventBus;
 
+import schaffer.myoho.Event.DeleteAndPayEvent;
 import schaffer.myoho.Event.EditCartGoodsEvent;
 import schaffer.myoho.Fragment.FragmentCart;
 import schaffer.myoho.R;
@@ -58,6 +60,13 @@ public class CartActivity extends AppCompatActivity {
 
     public void pay(View view) {
         //结算按钮
+        Button btn = (Button) view;
+        String s = btn.getText().toString();
+        if (s.equals("结算")) {
+            EventBus.getDefault().post(new DeleteAndPayEvent(true));
+        } else if (s.equals("删除")) {
+            EventBus.getDefault().post(new DeleteAndPayEvent(false));
+        }
     }
 
 }

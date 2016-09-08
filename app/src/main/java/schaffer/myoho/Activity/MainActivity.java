@@ -15,19 +15,30 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 
+import com.google.gson.Gson;
+import com.uuzuche.lib_zxing.activity.CaptureActivity;
+import com.uuzuche.lib_zxing.activity.CodeUtils;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import schaffer.myoho.Base.BaseFragment;
 import schaffer.myoho.Base.MyApplication;
+import schaffer.myoho.Bean.CartGoodsBean;
 import schaffer.myoho.DefinedView.DRadioButton;
-import schaffer.myoho.Fragment.FragmentCart;
+import schaffer.myoho.Fragment.FragmentCart1;
 import schaffer.myoho.Fragment.FragmentCategory;
 import schaffer.myoho.Fragment.FragmentHome;
 import schaffer.myoho.Fragment.FragmentMine;
 import schaffer.myoho.Fragment.FragmentRoam;
 import schaffer.myoho.R;
+import schaffer.myoho.UserConfig.User;
+import schaffer.myoho.Utils.HttpUtils;
+import schaffer.myoho.Utils.MLog;
+import schaffer.myoho.Utils.MToast;
+import schaffer.myoho.Utils.PathUtils;
+import schaffer.myoho.Utils.SPUtils;
 
 /**
  * 首先将所有的Fragment加载出来
@@ -53,23 +64,60 @@ public class MainActivity extends AppCompatActivity {
     private HashMap<String, BaseFragment> fragmentMap;
     private SlidingPaneLayout mainslide;
     private List<RadioButton> radioButtons;
+    private List<CartGoodsBean.CartBean> cart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initViews();
-        mainRbCart.setShow(true, 10);
+        boolean login = MyApplication.app.isLogin();
+
         initFragment();
         setRadioTag();
         mainRbHomeome.performClick();
+        if (login) {
+            //网络请求数据
+            new HttpUtils().loadData(PathUtils.JSON_CART_LIST_HEAD, PathUtils.JSON_CART_LIST_BODY).setOnLoadDataListener(new HttpUtils.OnLoadDataListener() {
+                @Override
+                public void loadSuccess(String content) {
+//                    JsonPrintAllUtils.printJson(content);
+                    CartGoodsBean cartGoodsBean = new Gson().fromJson(content, CartGoodsBean.class);
+                    cart = cartGoodsBean.getCart();
+                    mainRbCart.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            mainRbCart.setShow(true, cart.size());
+                        }
+                    });
+                    new Thread() {
+                        @Override
+                        public void run() {
+                            super.run();
+                            MLog.w("" + Thread.currentThread().getName());
+                            User userConfig = SPUtils.getUserConfig();
+                            MyApplication.user = userConfig;
+                        }
+                    }.start();
+                }
+
+                @Override
+                public void loadFailed(String errorMsg) {
+                    mainRbCart.setShow(false, 0);
+                }
+            });
+        } else {
+            //从本地得到sp,根据得到的list的内容得到数量
+            int cart_num = SPUtils.getLocalCartGoodsNum();
+            mainRbCart.setShow(true, cart_num);
+        }
     }
 
     private void setRadioTag() {
         mainRbHomeome.setTag(FragmentHome.class.getSimpleName());
         mainRbCategory.setTag(FragmentCategory.class.getSimpleName());
         mainRbRoam.setTag(FragmentRoam.class.getSimpleName());
-        mainRbCart.setTag(FragmentCart.class.getSimpleName());
+        mainRbCart.setTag(FragmentCart1.class.getSimpleName());
         mainRbMine.setTag(FragmentMine.class.getSimpleName());
     }
 
@@ -79,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentMap.put(FragmentHome.class.getSimpleName(), new FragmentHome());
         fragmentMap.put(FragmentCategory.class.getSimpleName(), new FragmentCategory());
         fragmentMap.put(FragmentRoam.class.getSimpleName(), new FragmentRoam());
-        fragmentMap.put(FragmentCart.class.getSimpleName(), new FragmentRoam());
+        fragmentMap.put(FragmentCart1.class.getSimpleName(), new FragmentCart1());
         fragmentMap.put(FragmentMine.class.getSimpleName(), new FragmentMine());
     }
 
@@ -118,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
                 dumpToFragment((String) mainRbRoam.getTag());
                 break;
             case R.id.main_rb_cart:
-                if (!MyApplication.isLogin) {
+                if (!MyApplication.app.isLogin()) {
                     //切换Fragment
                     dumpToFragment((String) mainRbCart.getTag());
                 } else {
@@ -179,12 +227,42 @@ public class MainActivity extends AppCompatActivity {
         }, 300);
     }
 
-    Handler handler = new Handler();
+    static Handler handler = new Handler();
 
     @Override
     public void onBackPressed() {
         overridePendingTransition(R.anim.choose_in, R.anim.main_out);
         super.onBackPressed();
 
+    }
+
+    public void codeScan(View view) {
+        Intent intent = new Intent(this, CaptureActivity.class);
+        startActivityForResult(intent, 1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode != RESULT_OK) return;
+        if (requestCode == 1) {
+            Bundle bundle = data.getExtras();
+            if (bundle == null) {
+                return;
+            }
+            if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
+                String result = bundle.getString(CodeUtils.RESULT_STRING);
+                MToast.notifys("解析结果-->" + result);
+            } else if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_FAILED) {
+                MToast.notifys("解析失败");
+            }
+        }
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 }

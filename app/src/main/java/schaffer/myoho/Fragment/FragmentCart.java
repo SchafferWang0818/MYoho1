@@ -1,5 +1,7 @@
 package schaffer.myoho.Fragment;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,17 +17,21 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import schaffer.myoho.Activity.LoginActivity;
 import schaffer.myoho.Adapter.CartGoodsAdapter;
 import schaffer.myoho.Base.BaseFragment;
 import schaffer.myoho.Base.MyApplication;
 import schaffer.myoho.Bean.CartGoodsBean;
 import schaffer.myoho.Event.AllCheckEvent;
+import schaffer.myoho.Event.DeleteAndPayEvent;
 import schaffer.myoho.Event.EditCartGoodsEvent;
 import schaffer.myoho.R;
 import schaffer.myoho.Utils.HttpUtils;
 import schaffer.myoho.Utils.MLog;
+import schaffer.myoho.Utils.MToast;
 import schaffer.myoho.Utils.PathUtils;
 
 /**
@@ -49,10 +55,10 @@ public class FragmentCart extends BaseFragment {
 
     @Override
     protected void initDatas() {
-        if (MyApplication.user != null && MyApplication.isLogin == true) {
+        if (MyApplication.app.isLogin()) {
 
             back.setVisibility(View.VISIBLE);
-            PathUtils.JSON_CART_LIST_USER_ID = MyApplication.user.useId;
+            PathUtils.JSON_CART_LIST_USER_ID = MyApplication.user.getUseId();
             new HttpUtils().loadData(PathUtils.JSON_CART_LIST_HEAD, PathUtils.JSON_CART_LIST_BODY).setOnLoadDataListener(new HttpUtils.OnLoadDataListener() {
 
                 @Override
@@ -76,6 +82,7 @@ public class FragmentCart extends BaseFragment {
             });
         } else {
             //从本地读取购物车信息
+
         }
     }
 
@@ -93,16 +100,16 @@ public class FragmentCart extends BaseFragment {
 //                }
 //                MLog.w("全选按钮当前状态-->" + checkAllCb.isChecked());
 //                adapter.notifyDataSetChanged();
-                if (!checkAllCb.isChecked()){
+                if (!checkAllCb.isChecked()) {
                     //说明已经全选,将全部置为不选择
 //                    checkAllCb.setChecked(true);
                     for (int i = 0; i < cart.size(); i++) {
                         cart.get(i).setChecked(false);
                     }
-                }else{
+                } else {
                     //说明要置为全选
                     for (int i = 0; i < cart.size(); i++) {
-                        if (!cart.get(i).isChecked()){
+                        if (!cart.get(i).isChecked()) {
                             cart.get(i).setChecked(true);
                         }
                     }
@@ -121,7 +128,25 @@ public class FragmentCart extends BaseFragment {
 //                adapter.notifyDataSetChanged();
 //            }
 //        });
-
+        careBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (MyApplication.app.isLogin()) {
+                    //登录,关注成功
+                    for (CartGoodsBean.CartBean cartBean : cart) {
+                        boolean checked = cartBean.isChecked();
+                        if (checked) {
+                            MyApplication.user.careList.add(cartBean);
+                        }
+                    }
+                    MToast.notifys("关注成功,需要发送数据,并且删除该商品");
+                } else {
+                    //未登录
+                    Intent intent = new Intent(ac, LoginActivity.class);
+                    startActivityForResult(intent, 1);
+                }
+            }
+        });
     }
 
     @Override
@@ -164,10 +189,12 @@ public class FragmentCart extends BaseFragment {
             adapter.notifyDataSetChanged();
         }
         if (type == EditCartGoodsEvent.ENABLE) {
+            payBtn.setText("删除");
             freightTv.setVisibility(View.GONE);
             moneyNumTv.setVisibility(View.GONE);
             careBtn.setVisibility(View.VISIBLE);
         } else if (type == EditCartGoodsEvent.DISABLE) {
+            payBtn.setText("结算");
             freightTv.setVisibility(View.VISIBLE);
             moneyNumTv.setVisibility(View.VISIBLE);
             careBtn.setVisibility(View.GONE);
@@ -193,17 +220,64 @@ public class FragmentCart extends BaseFragment {
 //
 //            adapter.notifyDataSetChanged();
 //        }
-        if (!event.checked){
-            if (checkAllCb.isChecked()){
+        if (!event.checked) {
+            if (checkAllCb.isChecked()) {
                 checkAllCb.setChecked(false);
             }
-        }else{
-            if (checkAllCb.isChecked()){
+        } else {
+            if (checkAllCb.isChecked()) {
                 return;
             }
             checkAllCb.setChecked(true);
         }
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void deleteOrPay(DeleteAndPayEvent event) {
+        if (event.state) {
+            //结算
 
+
+        } else {
+            //删除--->存在问题
+            List<Integer> integers = new ArrayList<>();
+            for (int i = 0; i < cart.size(); i++) {
+                boolean checked = cart.get(i).isChecked();
+                if (checked) {
+                    integers.add(i);
+                }
+            }
+            for (int i = 0; i < cart.size(); i++) {
+                for (int size = integers.size() - 1; size >= 0; size--) {
+                    if (i == integers.get(size)) {
+                        cart.remove(i);
+                    }
+                }
+            }
+            adapter.notifyDataSetChanged();
+            MLog.w("delete finish.");
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if (resultCode == Activity.RESULT_CANCELED) {
+                MToast.notifys("已取消登录");
+                return;
+            }
+            if (resultCode == Activity.RESULT_OK) {
+                //重新加载购物车的信息
+                if (cart.size() > 0)
+                    for (CartGoodsBean.CartBean cartBean : cart) {
+                        boolean checked = cartBean.isChecked();
+                        if (checked) {
+                            MyApplication.user.careList.add(cartBean);
+                        }
+                    }
+                MToast.notifys("此处应该从服务器加载数据,重新获取数据源");
+            }
+        }
+    }
 }

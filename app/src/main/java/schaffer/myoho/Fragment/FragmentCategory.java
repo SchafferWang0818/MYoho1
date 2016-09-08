@@ -13,9 +13,9 @@ import java.util.List;
 import schaffer.myoho.Adapter.CategoryPagerAdapter;
 import schaffer.myoho.Base.BaseChildFragment;
 import schaffer.myoho.Base.BaseFragment;
-import schaffer.myoho.ChildFragment.FragmentFirst;
-import schaffer.myoho.ChildFragment.FragmentSecond;
-import schaffer.myoho.ChildFragment.FragmentThird;
+import schaffer.myoho.FragmentCategory.FragmentFirst;
+import schaffer.myoho.FragmentCategory.FragmentSecond;
+import schaffer.myoho.FragmentCategory.FragmentThird;
 import schaffer.myoho.DefinedView.CategoryViewPager;
 import schaffer.myoho.R;
 

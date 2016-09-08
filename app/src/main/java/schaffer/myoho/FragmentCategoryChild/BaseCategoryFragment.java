@@ -1,4 +1,4 @@
-package schaffer.myoho.CategoryChildFragment;
+package schaffer.myoho.FragmentCategoryChild;
 
 import android.animation.ObjectAnimator;
 import android.app.Activity;
@@ -121,10 +121,6 @@ public abstract class BaseCategoryFragment extends Fragment {
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        if (getUserVisibleHint()) {
-            isVisible = true;
-        } else {
-            isVisible = false;
-        }
+        isVisible = getUserVisibleHint();
     }
 }

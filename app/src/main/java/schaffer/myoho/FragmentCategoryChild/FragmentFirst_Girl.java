@@ -1,4 +1,4 @@
-package schaffer.myoho.CategoryChildFragment;
+package schaffer.myoho.FragmentCategoryChild;
 
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,24 +13,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 import schaffer.myoho.Adapter.BaseListAdapter;
-import schaffer.myoho.Bean.CateLifeBean;
+import schaffer.myoho.Bean.CateGirlBean;
 import schaffer.myoho.R;
 import schaffer.myoho.Utils.HttpUtils;
 import schaffer.myoho.Utils.MLog;
 import schaffer.myoho.Utils.PathUtils;
 
 /**
- * FragmentFirst_LifeStyle
+ * Created by a7352 on 2016/8/24.FragmentFirst_Girl
  */
-public class FragmentFirst_LifeStyle extends BaseCategoryFragment implements HttpUtils.OnLoadDataListener, AdapterView.OnItemClickListener {
 
-    private List<CateLifeBean.LifeBean> list;
-    private LifeAdapter adapter;
+/**
+ * Created by a7352 on 2016/8/24.
+ */
+public class FragmentFirst_Girl extends BaseCategoryFragment implements HttpUtils.OnLoadDataListener, AdapterView.OnItemClickListener {
+
+    private List<CateGirlBean.GirlBean> list;
+    private GirlAdapter adapter;
 
     //已经加载了布局,现在就要获得数据并进行填充
     @Override
     protected void initAdapter() {
-        adapter = new LifeAdapter(list);
+        adapter = new GirlAdapter(list);
         leftLv.setAdapter(adapter);
         leftLv.setOnItemClickListener(this);
     }
@@ -42,17 +46,17 @@ public class FragmentFirst_LifeStyle extends BaseCategoryFragment implements Htt
     }
 
     public void getData() {
-        new HttpUtils().loadData(PathUtils.JSON_CATE_LIFESTYLE, "").setOnLoadDataListener(this);
+        new HttpUtils().loadData(PathUtils.JSON_CATE_GIRL, "").setOnLoadDataListener(this);
     }
 
     @Override
     public void loadSuccess(String content) {
-        if (content.indexOf("life")>0){
-            CateLifeBean lifeBean = new Gson().fromJson(content, CateLifeBean.class);
-            List<CateLifeBean.LifeBean> life = lifeBean.getLife();
-            if (life != null) {
+        if (content.indexOf("girl")>0){
+            CateGirlBean girlBean = new Gson().fromJson(content, CateGirlBean.class);
+            List<CateGirlBean.GirlBean> girl = girlBean.getGirl();
+            if (girl != null) {
                 list.clear();
-                list.addAll(life);
+                list.addAll(girl);
                 adapter.notifyDataSetChanged();
             }
         }else{
@@ -76,22 +80,22 @@ public class FragmentFirst_LifeStyle extends BaseCategoryFragment implements Htt
             int childMeasuredHeight = child.getMeasuredHeight();
             fingerIv.setTranslationY(top + childMeasuredHeight / 2);
             if (isOpen()) {
-                if (lastPosition == position) {
+                if (lastPosition==position){
                     closeRight();
 
-                } else {
+                }else{
 
                 }
-            } else {
+            }else{
                 openRight();
             }
         }
     }
 
 
-    class LifeAdapter extends BaseListAdapter<CateLifeBean.LifeBean> {
+    class GirlAdapter extends BaseListAdapter<CateGirlBean.GirlBean> {
 
-        public LifeAdapter(List<CateLifeBean.LifeBean> list) {
+        public GirlAdapter(List<CateGirlBean.GirlBean> list) {
             super(list);
         }
 

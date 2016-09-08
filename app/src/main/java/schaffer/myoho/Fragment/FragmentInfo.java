@@ -11,15 +11,15 @@ import java.util.List;
 import schaffer.myoho.Adapter.InfoPageFragmentAdapter;
 import schaffer.myoho.Base.BaseFragment;
 import schaffer.myoho.DefinedView.DTabView;
-import schaffer.myoho.InfoChildFragment.FragmentSortChild1;
-import schaffer.myoho.InfoChildFragment.FragmentSortChild2;
-import schaffer.myoho.InfoChildFragment.FragmentSortChild3;
+import schaffer.myoho.FragmentSort.FragmentSortChild1;
+import schaffer.myoho.FragmentSort.FragmentSortChild2;
+import schaffer.myoho.FragmentSort.FragmentSortChild3;
 import schaffer.myoho.R;
 
 /**
  * Created by a7352 on 2016/8/23.
  */
-public class FragmentInfo extends BaseFragment implements ViewPager.OnPageChangeListener, View.OnClickListener {
+public class FragmentInfo extends BaseFragment implements ViewPager.OnPageChangeListener, DTabView.OnPressChangStateListener/*, View.OnClickListener*//*, DTabView.OnPressChangStateListener */{
 
 
     private DTabView tabView1;
@@ -49,7 +49,8 @@ public class FragmentInfo extends BaseFragment implements ViewPager.OnPageChange
     protected void initListener() {
         super.initListener();
         for (DTabView tab : tabs) {
-            tab.setOnClickListener(this);
+//            tab.setOnClickListener(this);
+            tab.setOnPressChangStateListener(this);
         }
         pager.setOnPageChangeListener(this);
 
@@ -86,24 +87,35 @@ public class FragmentInfo extends BaseFragment implements ViewPager.OnPageChange
     }
 
     @Override
-    public void onClick(View v) {
-        for (DTabView tab : tabs) {
-            tab.setSelected(false);
-        }
-        switch (v.getId()) {
-            case R.id.fragment_tab_1:
-                tabView1.setSelected(true);
-                pager.setCurrentItem(0);
-                break;
-            case R.id.fragment_tab_2:
-                tabView2.setSelected(true);
-                pager.setCurrentItem(1);
-                break;
-            case R.id.fragment_tab_3:
-                tabView3.setSelected(true);
-                pager.setCurrentItem(2);
-                break;
+    public void sequence(View v) {
 
-        }
     }
+
+    @Override
+    public void reverse(View v) {
+
+    }
+
+//    @Override
+//    public void onClick(View v) {
+//        for (DTabView tab : tabs) {
+//            tab.setSelected(false);
+//        }
+//        switch (v.getId()) {
+//            case R.id.fragment_tab_1:
+//                tabView1.setSelected(true);
+//                pager.setCurrentItem(0);
+//                break;
+//            case R.id.fragment_tab_2:
+//                tabView2.setSelected(true);
+//                pager.setCurrentItem(1);
+//                break;
+//            case R.id.fragment_tab_3:
+//                tabView3.setSelected(true);
+//                pager.setCurrentItem(2);
+//                break;
+//
+//        }
+//    }
+
 }

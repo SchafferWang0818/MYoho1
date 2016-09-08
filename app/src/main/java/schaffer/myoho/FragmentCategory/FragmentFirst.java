@@ -1,4 +1,4 @@
-package schaffer.myoho.ChildFragment;
+package schaffer.myoho.FragmentCategory;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,11 +9,11 @@ import java.util.List;
 
 import butterknife.OnClick;
 import schaffer.myoho.Adapter.CateSonPagerAdapter;
-import schaffer.myoho.CategoryChildFragment.BaseCategoryFragment;
+import schaffer.myoho.FragmentCategoryChild.BaseCategoryFragment;
 import schaffer.myoho.Base.BaseChildFragment;
-import schaffer.myoho.CategoryChildFragment.FragmentFirst_Boy;
-import schaffer.myoho.CategoryChildFragment.FragmentFirst_Girl;
-import schaffer.myoho.CategoryChildFragment.FragmentFirst_LifeStyle;
+import schaffer.myoho.FragmentCategoryChild.FragmentFirst_Boy;
+import schaffer.myoho.FragmentCategoryChild.FragmentFirst_Girl;
+import schaffer.myoho.FragmentCategoryChild.FragmentFirst_LifeStyle;
 import schaffer.myoho.DefinedView.CategoryViewPager;
 import schaffer.myoho.R;
 

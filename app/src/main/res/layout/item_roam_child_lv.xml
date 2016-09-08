@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/item_roam_child_lv_head_iv"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_margin="10dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/item_roam_child_lv_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/item_roam_child_lv_head_iv"
+        android:layout_alignTop="@id/item_roam_child_lv_head_iv"
+        android:layout_toRightOf="@id/item_roam_child_lv_head_iv"
+        android:gravity="center_vertical"
+        android:text="name"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/item_roam_child_lv_iv"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@id/item_roam_child_lv_head_iv"
+        android:scaleType="centerCrop"
+        android:src="@drawable/product_icon_loading_default" />
+
+    <TextView
+        android:id="@+id/item_roam_lv_title_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_roam_child_lv_iv"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp"
+        android:maxLines="2"
+        android:text="this is titlethis is titlethis is titlethis is titlethis is titlethis is titlethis is titlethis is titlethis is title"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/item_roam_lv_content_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_roam_lv_title_tv"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:maxLines="2"
+        android:text="this is contentthis is contentthis is contentthis is contentthis is contentthis is contentthis is contentthis is contentthis is contentthis is contentthis is content"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/item_roam_lv_time_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_roam_lv_content_tv"
+        android:layout_marginLeft="5dp"
+        android:drawableLeft="@drawable/goods_vip2_icon"
+        android:drawablePadding="10dp"
+        android:text="time"
+        android:textSize="18sp" />
+
+    <ImageButton
+        android:id="@+id/item_roam_child_lv_share"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/item_roam_lv_content_tv"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/share" />
+</RelativeLayout>

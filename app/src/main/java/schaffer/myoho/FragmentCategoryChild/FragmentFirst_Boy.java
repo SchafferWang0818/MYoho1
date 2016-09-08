@@ -1,4 +1,4 @@
-package schaffer.myoho.CategoryChildFragment;
+package schaffer.myoho.FragmentCategoryChild;
 
 import android.content.Intent;
 import android.view.View;

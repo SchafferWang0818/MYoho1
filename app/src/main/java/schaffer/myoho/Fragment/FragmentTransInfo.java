@@ -17,7 +17,6 @@ import schaffer.myoho.R;
  */
 public class FragmentTransInfo extends BaseFragment {
 
-
     public boolean isAdd;
 
     @Override

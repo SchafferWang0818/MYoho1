@@ -7,16 +7,6 @@ import java.util.List;
  */
 public class GoodsDetailBean {
 
-    /**
-     * sucessfully : ok
-     * 商品
-     * goods : [{"_id":"1","title":"奔跑吧兄弟 撕名牌魔术贴徽章T恤","price":"139.00","ShopId":"1","GoodsUrl":"http://item.yohobuy.com/product/pro_204497_273231/","time":"1439984566","discount":"139.00","SexId":"0","CategoryId":"0","ColorId":"0","advertId":"0"}]
-     * 商品Page
-     * img : [{"_id":"44","imgpath":"a1.jpg","goodsId":"1","UserId":null,"NewsId":null,"advertId":null,"shopId":"1"},{"_id":"45","imgpath":"a2.jpg","goodsId":"1","UserId":null,"NewsId":null,"advertId":null,"shopId":"1"},{"_id":"46","imgpath":"a3.jpg","goodsId":"1","UserId":null,"NewsId":null,"advertId":null,"shopId":"1"},{"_id":"47","imgpath":"a4.jpg","goodsId":"1","UserId":null,"NewsId":null,"advertId":null,"shopId":"1"},{"_id":"48","imgpath":"a5.jpg","goodsId":"1","UserId":null,"NewsId":null,"advertId":null,"shopId":"1"}]
-     * 商品详情lv
-     * imgvale : [{"_id":"1","imgpath":"v1.jpg","goodsId":"1"},{"_id":"2","imgpath":"v2.jpg","goodsId":"1"},{"_id":"3","imgpath":"v3.jpg","goodsId":"1"},{"_id":"4","imgpath":"v4.jpg","goodsId":"1"},{"_id":"5","imgpath":"v5.jpg","goodsId":"1"},{"_id":"6","imgpath":"v6.jpg","goodsId":"1"},{"_id":"7","imgpath":"v7.jpg","goodsId":"1"}]
-     */
-
     private String sucessfully;
     /**
      * _id : 1

@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import schaffer.myoho.R;
+import schaffer.myoho.Utils.MLog;
 
 /**
  * Created by a7352 on 2016/8/29.
@@ -25,7 +27,7 @@ public class DRefreshListView extends RelativeLayout {
     private View footer;
     private ListView lv;
     private LayoutParams headerParams;
-//    private ArrayAdapter<String> adapter;
+    //    private ArrayAdapter<String> adapter;
     private List<String> list;
     private LayoutParams lvParams;
     private int headerHeight;
@@ -39,6 +41,9 @@ public class DRefreshListView extends RelativeLayout {
     private int moveY;
     private boolean isLoadTop;
     private boolean isLoadFoot;
+    private boolean enable;
+    private boolean top;
+    private boolean bottom;
 
     public DRefreshListView(Context context) {
         this(context, null);
@@ -79,6 +84,18 @@ public class DRefreshListView extends RelativeLayout {
         addView(header);
         addView(footer);
         addView(lv);
+        post(new Runnable() {
+            @Override
+            public void run() {
+                headerHeight = header.getMeasuredHeight();
+                footerHeight = footer.getMeasuredHeight();
+                MLog.w("改变margin-->" + headerHeight + "," + footerHeight);
+                headerParams.topMargin = -headerHeight;
+                header.setLayoutParams(headerParams);
+                footerParams.bottomMargin = -footerHeight;
+                footer.setLayoutParams(footerParams);
+            }
+        });
     }
 
 //    private void initLvData_Adapter() {
@@ -93,14 +110,11 @@ public class DRefreshListView extends RelativeLayout {
     @Override
     public void onWindowFocusChanged(boolean hasWindowFocus) {
         super.onWindowFocusChanged(hasWindowFocus);
-        headerHeight = header.getMeasuredHeight();
-        footerHeight = footer.getMeasuredHeight();
+
 //        MLog.w("headerHeight:" + headerHeight);
 //        MLog.w("footerHeight:" + footerHeight);
-        headerParams.topMargin = -headerHeight;
-        header.setLayoutParams(headerParams);
-        footerParams.bottomMargin = -footerHeight;
-        footer.setLayoutParams(footerParams);
+
+
     }
 
     @Override
@@ -132,7 +146,7 @@ public class DRefreshListView extends RelativeLayout {
                 //上拉刷新,要求最后一个可见条目为最后一条数据,并且getBottom为屏幕的高度
 //                MLog.w(adapter.getCount() + "<-相等否->" + list.size());
 
-                if (moveY < 0 && lv.getLastVisiblePosition() == lv.getAdapter().getCount() - 1) {
+                if (moveY < 0 &&lv.getAdapter().getCount()>0&& lv.getLastVisiblePosition() == lv.getAdapter().getCount() - 1) {
 //                    MLog.w("拦截上拉");
                     int i = lv.getLastVisiblePosition() - lv.getFirstVisiblePosition() - 1;
                     int bottom = lv.getChildAt(i).getBottom();
@@ -158,8 +172,12 @@ public class DRefreshListView extends RelativeLayout {
                 swipeUp();
                 break;
             case MotionEvent.ACTION_UP:
-                upAtTop();
-                upAtBottom();
+                if (top) {
+                    upAtTop();
+                }
+                if (bottom) {
+                    upAtBottom();
+                }
                 break;
 
 
@@ -182,6 +200,7 @@ public class DRefreshListView extends RelativeLayout {
                 onRefreshListener.loadbottom();
             }
         }
+        bottom = false;
     }
 
     //顶部放手
@@ -198,6 +217,7 @@ public class DRefreshListView extends RelativeLayout {
                 onRefreshListener.loadTop();
             }
         }
+        top = false;
     }
 
     private void initTop() {
@@ -216,6 +236,7 @@ public class DRefreshListView extends RelativeLayout {
             lvParams.topMargin = moveY;
             footer.setLayoutParams(footerParams);
             lv.setLayoutParams(lvParams);
+            bottom = true;
         }
     }
 
@@ -228,12 +249,40 @@ public class DRefreshListView extends RelativeLayout {
 //            int realMove = Math.min(Math.max(move, -headerHeight), headerHeight / 2);
             headerParams.topMargin = move;
             header.setLayoutParams(headerParams);
+            top = true;
         }
     }
 
 
     public void setAdapter(BaseAdapter adapter) {
         lv.setAdapter(adapter);
+    }
+
+
+//    public void setItemClick(AbsListView.OnItemClickListener o) {
+//        lv.setOnItemClickListener(o);
+//    }
+
+    public int position;
+
+    public void setItemClick() {
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (onItemClick!=null){
+                    onItemClick.click(position);
+                }
+            }
+        });
+    }
+
+    public interface OnItemClick{
+        void click(int position);
+    }
+    OnItemClick onItemClick;
+
+    public void setOnItemClick(OnItemClick onItemClick) {
+        this.onItemClick = onItemClick;
     }
 
     public interface OnRefreshListener {

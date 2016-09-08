@@ -9,13 +9,9 @@
         style="@style/toolbar_group">
 
         <ImageButton
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:background="@null"
             android:onClick="openSliding"
-            android:src="@drawable/selector_tb_menu_btn" />
+            android:src="@drawable/selector_tb_menu_btn"
+            style="@style/style_toolbar_menu" />
 
         <ImageButton
             android:layout_width="40dp"
@@ -24,8 +20,8 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
             android:background="@null"
-            android:onClick="openSliding"
-            android:src="@drawable/ic_search_white_18dp" />
+            android:onClick="codeScan"
+            android:src="@drawable/selector_qr_code" />
 
         <ViewFlipper
             android:id="@+id/home_flipper"

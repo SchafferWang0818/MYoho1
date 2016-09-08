@@ -28,7 +28,5 @@ public abstract class BaseView {
         initListener();
     }
 
-    ;
-
 
 }

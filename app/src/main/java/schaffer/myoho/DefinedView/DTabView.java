@@ -6,6 +6,7 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -19,7 +20,7 @@ import schaffer.myoho.Utils.MLog;
 /**
  * Created by a7352 on 2016/9/4.
  */
-public class DTabView extends RelativeLayout {
+public class DTabView extends RelativeLayout implements View.OnClickListener {
 
 
     private String text;
@@ -80,6 +81,7 @@ public class DTabView extends RelativeLayout {
         group.addView(iv);
 
         addView(group);
+        setOnClickListener(this);
     }
 
     public void setImageRes(int resourceId) {
@@ -96,10 +98,8 @@ public class DTabView extends RelativeLayout {
      */
     public boolean isSelected;
     public boolean isPressed;
-
     @Override
-    public void setOnClickListener(OnClickListener l) {
-        super.setOnClickListener(l);
+    public void onClick(View v) {
         isSelected = true;
         MLog.w("点击事件");
         setImageRes(R.drawable.selector_mytab_draw);
@@ -107,13 +107,13 @@ public class DTabView extends RelativeLayout {
             iv.setPressed(false);
             isPressed = false;
             if (onPressChangStateListener != null) {
-                onPressChangStateListener.reverse(l);
+                onPressChangStateListener.reverse(v);
             }
         } else {
             iv.setPressed(true);
             isPressed = true;
             if (onPressChangStateListener != null) {
-                onPressChangStateListener.sequence(l);
+                onPressChangStateListener.sequence(v);
             }
         }
     }
@@ -122,12 +122,12 @@ public class DTabView extends RelativeLayout {
         /**
          * 顺序
          */
-        void sequence(Object o);
+        void sequence(View v);
 
         /**
          * 逆序
          */
-        void reverse(Object o);
+        void reverse(View v);
     }
 
     OnPressChangStateListener onPressChangStateListener;

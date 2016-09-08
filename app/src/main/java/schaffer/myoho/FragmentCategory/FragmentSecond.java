@@ -1,4 +1,4 @@
-package schaffer.myoho.ChildFragment;
+package schaffer.myoho.FragmentCategory;
 
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;

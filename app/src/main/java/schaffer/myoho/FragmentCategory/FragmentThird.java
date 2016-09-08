@@ -1,4 +1,4 @@
-package schaffer.myoho.ChildFragment;
+package schaffer.myoho.FragmentCategory;
 
 import android.graphics.Paint;
 import android.view.LayoutInflater;
@@ -34,7 +34,7 @@ public class FragmentThird extends BaseChildFragment {
 
     private ListView lv;
     private List<FollowGoodsBean.FollowBean> follow;
-    private List<FollowGoodsBean.FollowBean> list = new ArrayList<>();;
+    private List<FollowGoodsBean.FollowBean> list = new ArrayList<>();
     private MyAdapter adapter;
     private boolean isScrolling;
     private RelativeLayout emptyView;

@@ -1,4 +1,4 @@
-package schaffer.myoho.InfoChildFragment;
+package schaffer.myoho.FragmentSort;
 
 import android.view.LayoutInflater;
 import android.view.View;

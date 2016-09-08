@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 import java.util.List;
 
-import schaffer.myoho.CategoryChildFragment.BaseCategoryFragment;
+import schaffer.myoho.FragmentCategoryChild.BaseCategoryFragment;
 
 /**
  * Created by a7352 on 2016/8/24.
