@@ -74,21 +74,9 @@ public class CartGoodsAdapter extends BaseListAdapter<CartGoodsBean.CartBean> {
             holder1.checkBox1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    holder1.checkBox1.setChecked(!good.isChecked());
-//                    good.setChecked(!good.isChecked());
-//                    notifyAllCheck(position);
-
                     checkAndPost(position);
                 }
             });
-//            holder1.checkBox1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//                @Override
-//                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                    good.setChecked(isChecked);
-//                    notifyAllCheck(position);
-//                }
-//            });
-
         } else {
             final ViewHolder2 holder2 = (ViewHolder2) holder;
             final CartGoodsBean.CartBean good = getItem(position);
@@ -130,20 +118,9 @@ public class CartGoodsAdapter extends BaseListAdapter<CartGoodsBean.CartBean> {
             holder2.checkBox2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    holder2.checkBox2.setChecked(!good.isChecked());
-//                    good.setChecked(!good.isChecked());
-//                    notifyAllCheck(position);
-
                     checkAndPost(position);
                 }
             });
-//            holder2.checkBox2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//                @Override
-//                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                    good.setChecked(isChecked);
-//                    notifyAllCheck(position);
-//                }
-//            });
         }
         return convertView;
     }
@@ -163,34 +140,12 @@ public class CartGoodsAdapter extends BaseListAdapter<CartGoodsBean.CartBean> {
                     check++;
                 }
             }
+
             if (check==list.size()){
                 EventBus.getDefault().post(new AllCheckEvent(true));
             }
         }
     }
-
-    private void notifyAllCheck(int position) {
-//        //遍历所有的check状态,
-//        // 如果不是全部选中,将所有check的position传递过去,在全选取消之后选中选中的选项
-//        checks.clear();
-//        for (int i = 0; i < list.size(); i++) {
-//            boolean checked = list.get(i).checked;
-//            if (checked) {
-//                checks.add(i);
-//            }
-//        }
-//        if (checks.size() == list.size()) {
-//            EventBus.getDefault().post(new AllCheckEvent(true));
-////        } else if (checks.size() > 0 && checks.size() < list.size()) {
-////            EventBus.getDefault().post(new AllCheckEvent(false, checks));
-////        }else if (checks.size()==0){
-////            EventBus.getDefault().post(new AllCheckEvent(false));
-////        }
-//        }else{
-//            EventBus.getDefault().post(new AllCheckEvent(false));
-//        }
-    }
-
 
     static class BaseViewHolder {
         BaseViewHolder(View view) {
