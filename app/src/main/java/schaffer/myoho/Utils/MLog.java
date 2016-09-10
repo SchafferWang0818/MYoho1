@@ -7,7 +7,7 @@ import android.util.Log;
  */
 public class MLog {
     public static void w(String content) {
-//        Log.w("TAG", content);
+        Log.w("TAG", content);
     }
     public static void e(String content) {
         Log.e("TAG", content);

@@ -17,7 +17,6 @@ import java.io.OutputStream;
 import me.nereo.multi_image_selector.R;
 import song.image.crop.util.CLog;
 import song.image.crop.view.CropImageLayout;
-import me.nereo.multi_image_selector.*;
 
 public class CropImageActivity extends MonitoredActivity{
 

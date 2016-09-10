@@ -21,11 +21,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import schaffer.myoho.Activity.LoginActivity;
+import schaffer.myoho.Activity.PayLocationActivity;
 import schaffer.myoho.Adapter.CartGoodsAdapter;
 import schaffer.myoho.Base.BaseFragment;
 import schaffer.myoho.Base.MyApplication;
 import schaffer.myoho.Bean.CartGoodsBean;
+import schaffer.myoho.Bean.SerializableBean;
 import schaffer.myoho.Event.AllCheckEvent;
+import schaffer.myoho.Event.ButtonEnableEvent;
 import schaffer.myoho.Event.DeleteAndPayEvent;
 import schaffer.myoho.Event.EditCartGoodsEvent;
 import schaffer.myoho.R;
@@ -100,20 +103,21 @@ public class FragmentCart extends BaseFragment {
 //                }
 //                MLog.w("全选按钮当前状态-->" + checkAllCb.isChecked());
 //                adapter.notifyDataSetChanged();
-                if (!checkAllCb.isChecked()) {
-                    //说明已经全选,将全部置为不选择
+                if (cart.size() > 0)
+                    if (!checkAllCb.isChecked()) {
+                        //说明已经全选,将全部置为不选择
 //                    checkAllCb.setChecked(true);
-                    for (int i = 0; i < cart.size(); i++) {
-                        cart.get(i).setChecked(false);
-                    }
-                } else {
-                    //说明要置为全选
-                    for (int i = 0; i < cart.size(); i++) {
-                        if (!cart.get(i).isChecked()) {
-                            cart.get(i).setChecked(true);
+                        for (int i = 0; i < cart.size(); i++) {
+                            cart.get(i).setChecked(false);
+                        }
+                    } else {
+                        //说明要置为全选
+                        for (int i = 0; i < cart.size(); i++) {
+                            if (!cart.get(i).isChecked()) {
+                                cart.get(i).setChecked(true);
+                            }
                         }
                     }
-                }
                 adapter.notifyDataSetChanged();
             }
         });
@@ -236,7 +240,20 @@ public class FragmentCart extends BaseFragment {
     public void deleteOrPay(DeleteAndPayEvent event) {
         if (event.state) {
             //结算
-
+            List<CartGoodsBean.CartBean> cartBeen = new ArrayList<>();
+            for (CartGoodsBean.CartBean cartBean : cart) {
+                boolean checked = cartBean.isChecked();
+                if (checked) {
+                    cartBeen.add(cartBean);
+                }
+            }
+            if (cartBeen.size() == 0) {
+                MToast.notifys("当前未选中任何一个商品");
+                return;
+            }
+            Intent intent = new Intent(ac, PayLocationActivity.class);
+            intent.putExtra("goods", new SerializableBean(cartBeen));
+            startActivityForResult(intent, 3);
 
         } else {
             //删除--->存在问题
@@ -259,28 +276,34 @@ public class FragmentCart extends BaseFragment {
         }
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void buttonSetEnable(ButtonEnableEvent event) {
+        MLog.w("event.hasOneChecked" + event.hasOneChecked);
+        payBtn.setClickable(event.hasOneChecked);
+    }
+
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode != Activity.RESULT_OK) {
+            MToast.notifys("已取消当前操作");
+            return;
+        }
         if (requestCode == 1) {
-            if (resultCode == Activity.RESULT_CANCELED) {
-                MToast.notifys("已取消登录");
-                return;
-            }
-            if (resultCode == Activity.RESULT_OK) {
-                //重新加载购物车的信息
-                if (cart.size() > 0)
-                    for (CartGoodsBean.CartBean cartBean : cart) {
-                        boolean checked = cartBean.isChecked();
-                        if (checked) {
-                            MyApplication.user.careList.add(cartBean);
-                        }
+            //重新加载购物车的信息
+            if (cart.size() > 0)
+                for (CartGoodsBean.CartBean cartBean : cart) {
+                    boolean checked = cartBean.isChecked();
+                    if (checked) {
+                        MyApplication.user.careList.add(cartBean);
                     }
-                MToast.notifys("此处应该从服务器加载数据,重新获取数据源");
-            }
+                }
+            MToast.notifys("此处应该从服务器加载数据,重新获取数据源");
+        } else if (requestCode == 3) {
+            MToast.notifys("支付成功,我们将对订单进行确认");
         }
     }
-
 
 
 }

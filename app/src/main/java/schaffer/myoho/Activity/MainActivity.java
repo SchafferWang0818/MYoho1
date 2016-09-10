@@ -19,6 +19,8 @@ import com.google.gson.Gson;
 import com.uuzuche.lib_zxing.activity.CaptureActivity;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,6 +29,7 @@ import schaffer.myoho.Base.BaseFragment;
 import schaffer.myoho.Base.MyApplication;
 import schaffer.myoho.Bean.CartGoodsBean;
 import schaffer.myoho.DefinedView.DRadioButton;
+import schaffer.myoho.Event.UserStateEvent;
 import schaffer.myoho.Fragment.FragmentCart1;
 import schaffer.myoho.Fragment.FragmentCategory;
 import schaffer.myoho.Fragment.FragmentHome;
@@ -97,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
                             MLog.w("" + Thread.currentThread().getName());
                             User userConfig = SPUtils.getUserConfig();
                             MyApplication.user = userConfig;
+                            EventBus.getDefault().post(new UserStateEvent());
                         }
                     }.start();
                 }

@@ -1,5 +1,6 @@
 package schaffer.myoho.Bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -40,7 +41,7 @@ public class CartGoodsBean {
         this.cart = cart;
     }
 
-    public static class CartBean {
+    public static class CartBean implements Serializable {
         private String title;
         private String imgpath;
         private String color;

@@ -19,7 +19,10 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import schaffer.myoho.Bean.CartGoodsBean;
 import schaffer.myoho.Event.AllCheckEvent;
+import schaffer.myoho.Event.ButtonEnableEvent;
 import schaffer.myoho.R;
+import schaffer.myoho.Utils.MLog;
+import schaffer.myoho.Utils.MToast;
 import schaffer.myoho.Utils.PathUtils;
 
 /**
@@ -136,14 +139,32 @@ public class CartGoodsAdapter extends BaseListAdapter<CartGoodsBean.CartBean> {
             list.get(position).setChecked(true);
             int check = 0;
             for (int i = 0; i < list.size(); i++) {
-                if (list.get(i).isChecked()){
+                if (list.get(i).isChecked()) {
                     check++;
                 }
             }
 
-            if (check==list.size()){
+            if (check == list.size()) {
                 EventBus.getDefault().post(new AllCheckEvent(true));
             }
+        }
+        int checkNum = 0;
+        for (CartGoodsBean.CartBean cartBean : list) {
+            if (cartBean.checked) {
+                checkNum++;
+            }
+        }
+        setPayButtonEnable(checkNum);
+    }
+
+    private void setPayButtonEnable(int check) {
+        if (check == 0) {
+            MLog.w("当前应该不能点击");
+            EventBus.getDefault().post(new ButtonEnableEvent(false));
+            MToast.notifys("请选中一个商品");
+        } else {
+            MLog.w("当前应该可以点击");
+            EventBus.getDefault().post(new ButtonEnableEvent(true));
         }
     }
 

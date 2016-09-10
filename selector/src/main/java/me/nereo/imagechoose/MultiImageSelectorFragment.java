@@ -36,13 +36,13 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.nereo.multi_image_selector.R;
 import me.nereo.imagechoose.adapter.FolderAdapter;
 import me.nereo.imagechoose.adapter.ImageGridAdapter;
 import me.nereo.imagechoose.bean.Folder;
 import me.nereo.imagechoose.bean.Image;
 import me.nereo.imagechoose.utils.FileUtils;
 import me.nereo.imagechoose.utils.TimeUtils;
+import me.nereo.multi_image_selector.R;
 
 
 /**

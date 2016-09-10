@@ -29,6 +29,7 @@ public class CartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cart);
 
         frameLayout = (FrameLayout) findViewById(R.id.activity_cart_fragment_group);
+
         fm = getSupportFragmentManager();
         cart = new FragmentCart();
         fm.beginTransaction().replace(R.id.activity_cart_fragment_group, cart).commit();
@@ -68,5 +69,6 @@ public class CartActivity extends AppCompatActivity {
             EventBus.getDefault().post(new DeleteAndPayEvent(false));
         }
     }
+
 
 }

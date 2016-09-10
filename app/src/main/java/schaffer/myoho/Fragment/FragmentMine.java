@@ -22,8 +22,8 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
 
-import schaffer.myoho.Activity.LoginActivity;
 import me.nereo.imagechoose.MultiImageSelectorActivity;
+import schaffer.myoho.Activity.LoginActivity;
 import schaffer.myoho.Base.BaseFragment;
 import schaffer.myoho.Base.MyApplication;
 import schaffer.myoho.Dialog.PhotoDialog;
@@ -143,6 +143,20 @@ public class FragmentMine extends BaseFragment {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void userStateEvent(UserStateEvent event) {
+        MLog.w("MainActivity-->Mine-->userState");
+        setGroupVisible();
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        MLog.w("setUserVisibleHint"+isVisibleToUser);
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            setGroupVisible();
+        }
+    }
+
+    private void setGroupVisible() {
         if (MyApplication.app.isLogin()) {
             //登录的情况下
             group.setVisibility(View.VISIBLE);

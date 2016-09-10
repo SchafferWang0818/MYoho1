@@ -7,8 +7,6 @@ import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
-import me.nereo.multi_image_selector.R;
-
 /**
  * Created by sam on 14-10-17.
  */

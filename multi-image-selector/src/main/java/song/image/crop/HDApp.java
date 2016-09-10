@@ -1,7 +1,6 @@
 package song.image.crop;
 
 import android.app.Application;
-import android.graphics.Bitmap;
 
 import java.io.File;
 

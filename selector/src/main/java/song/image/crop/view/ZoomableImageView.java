@@ -5,7 +5,6 @@ import android.graphics.Matrix;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.view.*;
 import android.widget.ImageView;
 
 import song.image.crop.util.CLog;
